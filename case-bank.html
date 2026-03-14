@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例详情 | 某银行智能客服系统 - 创野风暴</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#000;--surface:#1d1d1f;--text:#f5f5f7;--text-secondary:#86868b;--accent:#2997ff;--ease:cubic-bezier(0.16,1,0.3,1)}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:"Inter","Noto Sans SC",-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+        a{text-decoration:none;color:inherit}
+        img{max-width:100%;display:block}
+        nav{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:center;padding:0 48px;z-index:9999;background:rgba(0,0,0,0.8);backdrop-filter:blur(20px)}
+        .nav-inner{max-width:1200px;width:100%;display:flex;justify-content:space-between;align-items:center}
+        .nav-logo{font-size:18px;font-weight:500;cursor:pointer;transition:opacity 0.3s}
+        .nav-logo:hover{opacity:0.7}
+        .nav-links{display:flex;gap:32px}
+        .nav-links a{font-size:12px;color:var(--text-secondary);transition:color 0.3s}
+        .nav-links a:hover,.nav-links a.active{color:var(--text)}
+        
+        .hero{min-height:40vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 60px}
+        .hero h1{font-size:clamp(36px,7vw,64px);font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
+        .hero p{font-size:clamp(16px,2vw,22px);color:var(--text-secondary)}
+        .tag{display:inline-block;padding:6px 16px;background:var(--accent);color:#fff;border-radius:100px;font-size:12px;font-weight:500;margin-bottom:20px}
+        
+        .info-bar{display:flex;justify-content:center;gap:48px;padding:32px 20px;background:var(--surface);flex-wrap:wrap}
+        .info-item{text-align:center}
+        .info-label{font-size:11px;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+        .info-value{font-size:15px;font-weight:500}
+        
+        .content{max-width:900px;margin:0 auto;padding:60px 20px 120px}
+        .section{margin-bottom:64px;opacity:0;transform:translateY(30px);transition:all 1s var(--ease)}
+        .section.visible{opacity:1;transform:translateY(0)}
+        .section h2{font-size:clamp(24px,3.5vw,36px);font-weight:600;letter-spacing:-0.02em;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1)}
+        .section p{font-size:16px;color:var(--text-secondary);margin-bottom:16px;line-height:1.8}
+        .section strong{color:var(--text)}
+        
+        .highlight{background:var(--surface);border-radius:20px;padding:40px;margin:32px 0}
+        .highlight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-top:32px}
+        .highlight-item{text-align:center}
+        .highlight-num{font-size:42px;font-weight:600;color:var(--accent);margin-bottom:8px}
+        .highlight-label{font-size:14px;color:var(--text-secondary)}
+        
+        .back-section{text-align:center;padding:40px 20px}
+        .back-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--surface);border-radius:100px;font-size:15px;font-weight:500;transition:all 0.4s var(--ease)}
+        .back-btn:hover{background:var(--accent)}
+        .back-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:2}
+        
+        footer{padding:40px 20px;background:var(--surface);border-top:1px solid rgba(255,255,255,0.1);text-align:center}
+        .footer-content{font-size:13px;color:var(--text-secondary)}
+        
+        @media(max-width:768px){.nav-links{display:none}.info-bar{gap:24px}.highlight{padding:28px}}
+    </style>
+</head>
+<body>
+    <nav><div class="nav-inner"><div class="nav-logo" onclick="location.href='index.html'">创野风暴</div><div class="nav-links"><a href="index.html#services">服务</a><a href="index.html#ai">AI能力</a><a href="index.html#cases">案例</a><a href="about.html">关于</a><a href="index.html#contact">联系</a></div></div></nav>
+    
+    <section class="hero">
+        <span class="tag">金融科技</span>
+        <h1>某银行智能客服系统</h1>
+        <p>基于RAG技术构建企业知识库</p>
+    </section>
+    
+    <div class="info-bar">
+        <div class="info-item"><div class="info-label">客户行业</div><div class="info-value">金融科技 · 国有股份制商业银行</div></div>
+        <div class="info-item"><div class="info-label">核心技术</div><div class="info-value">RAG检索增强生成、大模型微调</div></div>
+        <div class="info-item"><div class="info-label">服务周期</div><div class="info-value">3个月</div></div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h2>项目背景</h2>
+            <p>银行业数字化转型加速推进，客服中心作为银行直面客户的核心窗口，面临服务需求多元化、监管合规要求严格、人力成本持续上涨等多重挑战。某国有股份制商业银行拥有线下网点+线上渠道全覆盖，客服中心承载个人业务、对公业务、信用卡业务等多板块咨询服务，传统客服模式存在明显瓶颈。</p>
+        </div>
+        
+        <div class="section">
+            <h2>核心痛点</h2>
+            <p><strong>服务效率瓶颈：</strong>高峰期咨询量激增，人工坐席排队等待时长过长，大量重复、标准化的业务咨询占用80%以上坐席精力。</p>
+            <p><strong>专业与合规风险：</strong>银行产品、合规政策更新频繁，人工坐席难以100%精准掌握所有信息，易出现答复不规范、不合规的情况。</p>
+            <p><strong>知识管理混乱：</strong>业务知识、合规文件分散在不同系统，没有统一的结构化知识库，知识检索、更新、同步效率极低。</p>
+            <p><strong>运营成本高企：</strong>人工坐席招聘、培训、管理成本持续上涨，新人培训周期长，无法快速适配业务需求。</p>
+        </div>
+        
+        <div class="section">
+            <h2>解决方案</h2>
+            <p>创野风暴为客户提供<strong>「基于RAG技术的智能客服系统+企业级结构化知识库」</strong>全链路定制化解决方案。</p>
+            <p><strong>① RAG智能问答引擎：</strong>定制开发适配金融行业的检索增强生成引擎，对接银行全量结构化知识库，实现精准语义检索与合规内容生成，保证所有答复均来自官方合规知识库。</p>
+            <p><strong>② 结构化知识库管理系统：</strong>定制开发统一的知识库管理平台，实现全量业务知识的结构化拆分、标签化管理、权限分级管控、一键更新同步。</p>
+            <p><strong>③ 多轮对话与场景化服务：</strong>定制开发适配银行多业务场景的多轮对话流程，支持复杂业务咨询的上下文理解，引导客户完成业务办理。</p>
+            <p><strong>④ 人工坐席辅助系统：</strong>实时识别客户咨询内容，自动检索匹配合规答复、业务流程、产品信息，为坐席提供实时话术支持。</p>
+            <p><strong>⑤ 合规管控与数据统计：</strong>全流程合规审计功能，所有智能答复留痕可追溯，搭建全维度数据看板监控核心指标。</p>
+        </div>
+        
+        <div class="section">
+            <h2>落地成果</h2>
+            <div class="highlight">
+                <div class="highlight-grid">
+                    <div class="highlight-item"><div class="highlight-num">85%</div><div class="highlight-label">常规业务智能解决率</div></div>
+                    <div class="highlight-item"><div class="highlight-num">95%</div><div class="highlight-label">响应效率提升</div></div>
+                    <div class="highlight-item"><div class="highlight-num">40%</div><div class="highlight-label">运营成本降低</div></div>
+                    <div class="highlight-item"><div class="highlight-num">98%</div><div class="highlight-label">业务咨询准确率</div></div>
+                </div>
+            </div>
+            <p>客户咨询一次性解决率提升45%，客服满意度从3.2分提升至4.8分（满分5分），人工跳转率降低65%。</p>
+        </div>
+        
+        <div class="section">
+            <h2>客户价值</h2>
+            <p>项目为客户实现客服体系的智能化转型，降本增效的同时强化了合规管控能力，提升了客户服务体验，为银行数字化转型打造了标杆场景。该方案在银行业智能客服与知识库建设领域具有可复制性，验证了RAG技术在金融合规场景的落地价值。</p>
+        </div>
+        
+        <div class="back-section">
+            <a href="index.html#cases" class="back-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回案例列表</a>
+        </div>
+    </div>
+    
+    <footer><div class="footer-content">© 2026 创野风暴科技有限公司</div></footer>
+    <script>
+        const observer = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
+        document.querySelectorAll('.section').forEach(el=>observer.observe(el));
+    </script>
+</body>
+</html>

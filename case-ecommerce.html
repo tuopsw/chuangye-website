@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例详情 | 某电商自动化工作流 - 创野风暴</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#000;--surface:#1d1d1f;--text:#f5f5f7;--text-secondary:#86868b;--accent:#2997ff;--ease:cubic-bezier(0.16,1,0.3,1)}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:"Inter","Noto Sans SC",-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+        a{text-decoration:none;color:inherit}
+        img{max-width:100%;display:block}
+        nav{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:center;padding:0 48px;z-index:9999;background:rgba(0,0,0,0.8);backdrop-filter:blur(20px)}
+        .nav-inner{max-width:1200px;width:100%;display:flex;justify-content:space-between;align-items:center}
+        .nav-logo{font-size:18px;font-weight:500;cursor:pointer;transition:opacity 0.3s}
+        .nav-logo:hover{opacity:0.7}
+        .nav-links{display:flex;gap:32px}
+        .nav-links a{font-size:12px;color:var(--text-secondary);transition:color 0.3s}
+        .nav-links a:hover,.nav-links a.active{color:var(--text)}
+        
+        .hero{min-height:40vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 60px}
+        .hero h1{font-size:clamp(36px,7vw,64px);font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
+        .hero p{font-size:clamp(16px,2vw,22px);color:var(--text-secondary)}
+        .tag{display:inline-block;padding:6px 16px;background:var(--accent);color:#fff;border-radius:100px;font-size:12px;font-weight:500;margin-bottom:20px}
+        
+        .info-bar{display:flex;justify-content:center;gap:48px;padding:32px 20px;background:var(--surface);flex-wrap:wrap}
+        .info-item{text-align:center}
+        .info-label{font-size:11px;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+        .info-value{font-size:15px;font-weight:500}
+        
+        .content{max-width:900px;margin:0 auto;padding:60px 20px 120px}
+        .section{margin-bottom:64px;opacity:0;transform:translateY(30px);transition:all 1s var(--ease)}
+        .section.visible{opacity:1;transform:translateY(0)}
+        .section h2{font-size:clamp(24px,3.5vw,36px);font-weight:600;letter-spacing:-0.02em;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1)}
+        .section p{font-size:16px;color:var(--text-secondary);margin-bottom:16px;line-height:1.8}
+        .section strong{color:var(--text)}
+        
+        .highlight{background:var(--surface);border-radius:20px;padding:40px;margin:32px 0}
+        .highlight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-top:32px}
+        .highlight-item{text-align:center}
+        .highlight-num{font-size:42px;font-weight:600;color:var(--accent);margin-bottom:8px}
+        .highlight-label{font-size:14px;color:var(--text-secondary)}
+        
+        .back-section{text-align:center;padding:40px 20px}
+        .back-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--surface);border-radius:100px;font-size:15px;font-weight:500;transition:all 0.4s var(--ease)}
+        .back-btn:hover{background:var(--accent)}
+        .back-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:2}
+        
+        footer{padding:40px 20px;background:var(--surface);border-top:1px solid rgba(255,255,255,0.1);text-align:center}
+        .footer-content{font-size:13px;color:var(--text-secondary)}
+        
+        @media(max-width:768px){.nav-links{display:none}.info-bar{gap:24px}.highlight{padding:28px}}
+    </style>
+</head>
+<body>
+    <nav><div class="nav-inner"><div class="nav-logo" onclick="location.href='index.html'">创野风暴</div><div class="nav-links"><a href="index.html#services">服务</a><a href="index.html#ai">AI能力</a><a href="index.html#cases">案例</a><a href="about.html">关于</a><a href="index.html#contact">联系</a></div></div></nav>
+    
+    <section class="hero">
+        <span class="tag">电商平台</span>
+        <h1>某电商自动化工作流</h1>
+        <p>AI Agent实现订单处理自动化</p>
+    </section>
+    
+    <div class="info-bar">
+        <div class="info-item"><div class="info-label">客户行业</div><div class="info-value">零售电商 · 头部综合电商平台</div></div>
+        <div class="info-item"><div class="info-label">核心技术</div><div class="info-value">AI Agent智能体、RPA自动化</div></div>
+        <div class="info-item"><div class="info-label">服务周期</div><div class="info-value">2个月</div></div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h2>项目背景</h2>
+            <p>电商行业订单量爆发式增长，订单处理作为电商运营的核心环节，面临大促峰值压力巨大、用户对服务时效要求持续提升、人力成本上涨等挑战。某头部综合电商平台覆盖多品类商品、多渠道店铺，日均订单量10万+，大促峰值超100万单，传统订单处理模式存在明显瓶颈。</p>
+        </div>
+        
+        <div class="section">
+            <h2>核心痛点</h2>
+            <p><strong>订单处理效率低：</strong>订单全流程涉及改地址、改规格、退款退货等数十个场景，80%以上为标准化重复操作，错单、漏单率高。</p>
+            <p><strong>大促峰值承载不足：</strong>大促期间订单量呈数十倍增长，临时招聘成本高，易出现订单积压、客户投诉激增。</p>
+            <p><strong>多系统协同壁垒：</strong>订单数据分散在电商平台、ERP、WMS、物流等多个系统，人工跨系统切换操作繁琐，易出现数据同步错误。</p>
+            <p><strong>运营成本高企：</strong>订单处理团队人员规模大，7*24小时服务覆盖需要多班倒，夜间、节假日人力成本翻倍。</p>
+        </div>
+        
+        <div class="section">
+            <h2>解决方案</h2>
+            <p>创野风暴为客户提供<strong>「AI Agent驱动的订单全流程自动化工作流」</strong>定制化解决方案，打通多系统数据壁垒。</p>
+            <p><strong>① 多场景订单处理AI Agent集群：</strong>定制开发订单查询Agent、改址改规格Agent、退款退货Agent、异常预警Agent等，每个Agent具备独立推理、决策、执行能力。</p>
+            <p><strong>② 多系统无缝集成：</strong>定制开发系统集成中间件，无缝对接电商平台、ERP、WMS、物流系统，实现全量订单数据实时同步。</p>
+            <p><strong>③ 智能决策与异常处理：</strong>基于大模型的智能决策引擎，自动识别常规与异常场景；常规全自动化，异常触发人工兜底。</p>
+            <p><strong>④ 可视化监控后台：</strong>实时监控订单处理进度、自动化率、错单率等核心指标，支持流程一键调整、规则快速更新。</p>
+            <p><strong>⑤ 大促弹性扩容：</strong>定制化架构支持弹性扩容，可承载数十倍订单量增长，保障大促期间服务稳定。</p>
+        </div>
+        
+        <div class="section">
+            <h2>落地成果</h2>
+            <div class="highlight">
+                <div class="highlight-grid">
+                    <div class="highlight-item"><div class="highlight-num">90%</div><div class="highlight-label">常规场景自动化率</div></div>
+                    <div class="highlight-item"><div class="highlight-num">180x</div><div class="highlight-label">处理效率提升</div></div>
+                    <div class="highlight-item"><div class="highlight-num">55%</div><div class="highlight-label">运营成本降低</div></div>
+                    <div class="highlight-item"><div class="highlight-num">30x</div><div class="highlight-label">大促承载能力提升</div></div>
+                </div>
+            </div>
+            <p>订单处理错单率从3‰降至0.1‰以内，客户投诉量降低65%，售后满意度从3.5分提升至4.9分。</p>
+        </div>
+        
+        <div class="section">
+            <h2>客户价值</h2>
+            <p>项目为客户实现订单处理全流程的智能化、自动化升级，大幅降本增效的同时提升了客户服务体验，保障了大促期间的业务稳定。该方案在电商订单处理场景具有可复制性，验证了AI Agent在复杂业务流程自动化中的核心价值。</p>
+        </div>
+        
+        <div class="back-section">
+            <a href="index.html#cases" class="back-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回案例列表</a>
+        </div>
+    </div>
+    
+    <footer><div class="footer-content">© 2026 创野风暴科技有限公司</div></footer>
+    <script>
+        const observer = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
+        document.querySelectorAll('.section').forEach(el=>observer.observe(el));
+    </script>
+</body>
+</html>
