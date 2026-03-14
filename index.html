@@ -9,39 +9,41 @@
         :root{--bg:#fff;--surface:#f5f5f7;--text:#1d1d1f;--text-secondary:#86868b;--accent:#2997ff;--ease:cubic-bezier(0.16,1,0.3,1)}
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
-        body{font-family:"Inter","Noto Sans SC",-apple-system,sans-serif;background:var(--bg);color:#1d1d1f;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        body{font-family:"Inter","Noto Sans SC",-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
         a{text-decoration:none;color:inherit}
         img{max-width:100%;display:block}
-        nav{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:center;padding:0 48px;z-index:9999;background:rgba(0,0,0,0.8);backdrop-filter:blur(20px)}
+        nav{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:center;padding:0 48px;z-index:9999;background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.05)}
         .nav-inner{max-width:980px;width:100%;display:flex;justify-content:space-between;align-items:center}
-        .nav-logo{font-size:18px;font-weight:500}
+        .nav-logo{font-size:18px;font-weight:600;letter-spacing:-0.02em}
         .nav-links{display:flex;gap:32px}
-        .nav-links a{font-size:12px;color:var(--text-secondary);transition:color 0.3s}
-        .nav-links a:hover{color:#1d1d1f}
-        .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px}
-        .hero-content{opacity:0;transform:translateY(40px);animation:fadeInUp 1.2s var(--ease) 0.2s forwards}
-        .hero h1{font-size:clamp(56px,10vw,96px);font-weight:600;letter-spacing:-0.02em;line-height:1.1;margin-bottom:16px}
+        .nav-links a{font-size:12px;font-weight:500;color:var(--text-secondary);transition:color 0.3s}
+        .nav-links a:hover{color:var(--text)}
+        .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px;position:relative;overflow:hidden}
+        .hero::before{content:"";position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(41,151,255,0.08) 0%,transparent 70%);pointer-events:none;animation:pulse 8s ease-in-out infinite}
+        @keyframes pulse{0%,100%{opacity:0.5;transform:translateX(-50%) scale(1)}50%{opacity:0.8;transform:translateX(-50%) scale(1.1)}}
+        .hero-content{position:relative;z-index:1;opacity:0;animation:fadeInUp 1.2s var(--ease) 0.3s forwards}
+        .hero h1{font-size:clamp(56px,10vw,96px);font-weight:700;letter-spacing:-0.04em;line-height:1.05;margin-bottom:16px}
         .hero h1 .chuang{color:#86868b}
         .hero h1 .feng{background:linear-gradient(90deg,#2997ff,#5e5ce6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .hero-subtitle{font-size:clamp(21px,3vw,28px);font-weight:400;color:var(--text-secondary);max-width:600px;margin-bottom:32px}
         .hero-cta{display:inline-flex;gap:16px;margin-top:8px}
-        .hero-cta a{padding:12px 24px;border-radius:980px;font-size:17px;font-weight:500;transition:all 0.4s var(--ease)}
+        .hero-cta a{padding:14px 28px;border-radius:980px;font-size:17px;font-weight:500;transition:all 0.4s var(--ease)}
         .hero-cta-primary{background:var(--accent);color:#fff}
-        .hero-cta-primary:hover{background:#0071e3;transform:scale(1.02)}
-        .hero-cta-secondary{background:transparent;border:1px solid var(--text-secondary);color:#1d1d1f}
-        .hero-cta-secondary:hover{border-color:#1d1d1f}
-        .section{padding:120px 20px;max-width:1080px;margin:0 auto;opacity:0;transform:translateY(60px);transition:all 1s var(--ease)}
+        .hero-cta-primary:hover{background:#0071e3;transform:scale(1.03);box-shadow:0 10px 30px rgba(41,151,255,0.3)}
+        .hero-cta-secondary{background:transparent;border:1px solid rgba(0,0,0,0.15);color:var(--text)}
+        .hero-cta-secondary:hover{background:rgba(0,0,0,0.05);transform:scale(1.03)}
+        .section{padding:140px 20px;max-width:1080px;margin:0 auto;opacity:0;transform:translateY(50px);transition:all 1s var(--ease)}
         .section.visible{opacity:1;transform:translateY(0)}
         .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-        .card{background:#fff;border-radius:24px;padding:48px;transition:all 0.5s var(--ease)}
-        .card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,0.4)}
-        .card-label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+        .card{background:#fff;border-radius:24px;padding:48px;box-shadow:0 4px 24px rgba(0,0,0,0.06);transition:all 0.5s var(--ease);border:1px solid rgba(0,0,0,0.06)}
+        .card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,0,0,0.12)}
+        .card-label{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
         .card h3{font-size:32px;font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
         .card p{font-size:17px;color:var(--text-secondary)}
-        .image-wrap{aspect-ratio:16/10;border-radius:24px;overflow:hidden}
+        .image-wrap{aspect-ratio:16/10;border-radius:24px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
         .image-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease)}
-        .image-wrap:hover img{transform:scale(1.05)}
-        .ai-section{background:#f5f5f7;padding:120px 20px}
+        .image-wrap:hover img{transform:scale(1.06)}
+        .ai-section{background:var(--surface);padding:140px 20px}
         .ai-content{max-width:1080px;margin:0 auto}
         .ai-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
         .ai-visual{opacity:0;transform:translateX(-60px);transition:all 1s var(--ease)}
@@ -50,114 +52,58 @@
         .ai-text.visible{opacity:1;transform:translateX(0)}
         .ai-text h2{font-size:clamp(32px,4vw,48px);font-weight:600;letter-spacing:-0.02em;margin-bottom:20px}
         .ai-text p{font-size:17px;color:var(--text-secondary);margin-bottom:32px}
-        .feature-item{display:flex;gap:14px;padding:16px;background:rgba(255,255,255,0.05);border-radius:12px;margin-bottom:10px;transition:all 0.3s}
-        .feature-item:hover{background:rgba(255,255,255,0.08);transform:translateX(8px)}
-        .feature-icon{width:36px;height:36px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center}
-        .feature-icon svg{width:18px;height:18px;stroke:#fff}
-        .feature-item h4{font-size:14px;font-weight:600;margin-bottom:2px}
-        .feature-item p{font-size:12px;color:var(--text-secondary)}
-        .cases{padding:120px 20px;max-width:1080px;margin:0 auto}
+        .feature-item{display:flex;gap:14px;padding:18px;background:rgba(255,255,255,0.8);border-radius:14px;margin-bottom:12px;transition:all 0.4s var(--ease);border:1px solid rgba(0,0,0,0.05)}
+        .feature-item:hover{background:#fff;transform:translateX(10px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+        .feature-icon{width:40px;height:40px;background:linear-gradient(135deg,#2997ff,#5e5ce6);border-radius:10px;display:flex;align-items:center;justify-content:center}
+        .feature-icon svg{width:20px;height:20px;stroke:#fff;stroke-width:1.5}
+        .feature-item h4{font-size:15px;font-weight:600;margin-bottom:3px}
+        .feature-item p{font-size:13px;color:var(--text-secondary)}
+        .cases{padding:140px 20px;max-width:1080px;margin:0 auto}
         .cases-header{text-align:center;margin-bottom:60px;opacity:0;transform:translateY(40px);transition:all 1s var(--ease)}
         .cases-header.visible{opacity:1;transform:translateY(0)}
-        .cases h2{font-size:clamp(32px,4vw,48px);font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
-        .cases-header p{font-size:18px;color:var(--text-secondary)}
-        .case.card{background:#fff;border-radius:24px;overflow:hidden;transition:all 0.5s var(--ease);opacity:0;transform:translateY(40px)}
+        .cases h2{font-size:clamp(36px,5vw,52px);font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
+        .cases-header p{font-size:19px;color:var(--text-secondary)}
+        .case-card{background:#fff;border-radius:24px;overflow:hidden;transition:all 0.5s var(--ease);opacity:0;transform:translateY(40px);border:1px solid rgba(0,0,0,0.06);box-shadow:0 4px 24px rgba(0,0,0,0.04)}
         .case-card.visible{opacity:1;transform:translateY(0)}
-        .case-card:hover{transform:translateY(-12px);box-shadow:0 40px 80px rgba(0,0,0,0.5)}
+        .case-card:hover{transform:translateY(-14px);box-shadow:0 24px 60px rgba(0,0,0,0.12)}
         .case-img{aspect-ratio:16/9;overflow:hidden}
-        .case-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s var(--ease)}
+        .case-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease)}
         .case-card:hover .case-img img{transform:scale(1.08)}
-        .case-info{padding:28px}
-        .case-tag{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-        .case-info h3{font-size:20px;font-weight:600;margin-bottom:6px}
-        .case-info p{font-size:14px;color:var(--text-secondary)}.case-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:8px 16px;background:var(--accent);color:#fff;border-radius:100px;font-size:13px;font-weight:500;transition:all 0.3s var(--ease)}.case-link:hover{background:#0071e3;transform:scale(1.02)}
-        .about{background:#f5f5f7;padding:120px 20px;text-align:center}
+        .case-info{padding:32px}
+        .case-tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+        .case-info h3{font-size:22px;font-weight:600;margin-bottom:8px}
+        .case-info p{font-size:15px;color:var(--text-secondary)}
+        .case-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:10px 20px;background:var(--accent);color:#fff;border-radius:100px;font-size:14px;font-weight:500;transition:all 0.3s var(--ease)}
+        .case-link:hover{background:#0071e3;transform:scale(1.05);box-shadow:0 8px 20px rgba(41,151,255,0.3)}
+        .about{background:var(--surface);padding:140px 20px;text-align:center}
         .about-content{max-width:700px;margin:0 auto;opacity:0;transform:translateY(40px);transition:all 1s var(--ease)}
         .about-content.visible{opacity:1;transform:translateY(0)}
-        .about h2{font-size:clamp(32px,4vw,48px);font-weight:600;letter-spacing:-0.02em;margin-bottom:20px}
-        .about p{font-size:18px;color:var(--text-secondary);margin-bottom:48px}
-        .stats{display:flex;justify-content:center;gap:60px;padding-top:48px;border-top:1px solid rgba(0,0,0,0.1)}
-        .stat-number{font-size:48px;font-weight:600;color:var(--accent)}
-        .stat-label{font-size:13px;color:var(--text-secondary)}
-        .contact{padding:120px 20px;text-align:center}
-        .contact h2{font-size:clamp(32px,4vw,48px);font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
-        .contact>p{font-size:18px;color:var(--text-secondary);margin-bottom:40px}
-        .contact-form{max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
-        .contact-form input,.contact-form textarea{width:100%;padding:16px 20px;background:var(--surface);border:1px solid rgba(0,0,0,0.1);border-radius:12px;color:#1d1d1f;font-size:15px;font-family:inherit;outline:none;transition:all 0.3s}
+        .about h2{font-size:clamp(36px,5vw,52px);font-weight:600;letter-spacing:-0.02em;margin-bottom:24px}
+        .about p{font-size:19px;color:var(--text-secondary);margin-bottom:56px}
+        .stats{display:flex;justify-content:center;gap:80px;padding-top:48px;border-top:1px solid rgba(0,0,0,0.08)}
+        .stat-number{font-size:52px;font-weight:600;color:var(--accent)}
+        .stat-label{font-size:14px;color:var(--text-secondary)}
+        .contact{padding:140px 20px;text-align:center}
+        .contact h2{font-size:clamp(36px,5vw,52px);font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
+        .contact>p{font-size:19px;color:var(--text-secondary);margin-bottom:48px}
+        .contact-form{max-width:420px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+        .contact-form input,.contact-form textarea{width:100%;padding:18px 22px;background:#fff;border:1px solid rgba(0,0,0,0.12);border-radius:14px;color:var(--text);font-size:16px;font-family:inherit;outline:none;transition:all 0.3s}
         .contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(41,151,255,0.1)}
-        .contact-form textarea{min-height:100px;resize:vertical}
-        .contact-form button{padding:16px 28px;background:var(--accent);color:#fff;border:none;border-radius:980px;font-size:15px;font-weight:500;cursor:pointer;transition:all 0.4s var(--ease)}
-        .contact-form button:hover{background:#0071e3;transform:scale(1.02)}
-        footer{padding:40px 20px;background:var(--surface);border-top:1px solid rgba(0,0,0,0.1)}
+        .contact-form textarea{min-height:120px;resize:vertical}
+        .contact-form button{padding:18px 32px;background:var(--accent);color:#fff;border:none;border-radius:980px;font-size:16px;font-weight:500;cursor:pointer;transition:all 0.4s var(--ease)}
+        .contact-form button:hover{background:#0071e3;transform:scale(1.02);box-shadow:0 10px 30px rgba(41,151,255,0.3)}
+        footer{padding:48px 20px;background:var(--surface);border-top:1px solid rgba(0,0,0,0.06)}
         .footer-content{max-width:980px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
         .footer-logo{font-size:14px;font-weight:500}
-        .footer-links{display:flex;gap:24px}
-        .footer-links a{font-size:12px;color:var(--text-secondary)}
+        .footer-links{display:flex;gap:28px}
+        .footer-links a{font-size:13px;color:var(--text-secondary);transition:color 0.3s}
         @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-        @media(max-width:768px){.nav-links{display:none}.grid-2,.ai-grid{grid-template-columns:1fr}.hero-cta{flex-direction:column}.card{padding:32px}.stats{flex-direction:column;gap:32px}.footer-content{flex-direction:column;gap:16px;text-align:center}}
+        @media(max-width:768px){.nav-links{display:none}.grid-2,.ai-grid{grid-template-columns:1fr}.hero-cta{flex-direction:column}.card{padding:36px}.stats{flex-direction:column;gap:40px}.footer-content{flex-direction:column;gap:20px;text-align:center}}
     </style>
 </head>
 <body>
     <nav><div class="nav-inner"><div class="nav-logo">创野风暴</div><div class="nav-links"><a href="#services">服务</a><a href="#ai">AI能力</a><a href="#cases">案例</a><a href="about.html">关于</a><a href="#contact">联系</a></div></div></nav>
-    <section class="hero">
-        <div class="hero-content">
-            <h1><span class="chuang" style="color:#86868b">创野</span><span class="feng">风暴</span></h1>
-            <p class="hero-subtitle">企业级定制开发与 AI Agent 研发<br>为 B 端企业提供全链路数字化转型服务</p>
-            <div class="hero-cta"><a href="#contact" class="hero-cta-primary">开启合作</a><a href="#services" class="hero-cta-secondary">了解更多</a></div>
-        </div>
-    </section>
-    <section class="section" id="services">
-        <div class="grid-2">
-            <div class="card"><p class="card-label">核心业务</p><h3>企业级定制开发</h3><p>基于业务场景的深度定制，打造高性能、可扩展的企业软件系统</p></div>
-            <div class="card"><p class="card-label">AI 能力</p><h3>智能 Agent 研发</h3><p>基于大语言模型的智能体开发，实现业务流程的智能化升级</p></div>
-        </div>
-    </section>
-    <section class="ai-section" id="ai">
-        <div class="ai-content">
-            <div class="ai-grid">
-                <div class="ai-visual"><div class="image-wrap"><img src="images/ai-hero.jpg" alt="AI Agent"></div></div>
-                <div class="ai-text">
-                    <h2>AI Agent<br>重新定义企业效率</h2>
-                    <p>基于先进的大语言模型与机器学习技术，为企业打造真正懂业务、会思考、能执行的智能助手。</p>
-                    <div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><h4>自然语言交互</h4><p>支持多轮对话</p></div></div>
-                    <div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg></div><div><h4>工具调用</h4><p>执行复杂流程</p></div></div>
-                    <div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><h4>持续进化</h4><p>越用越聪明</p></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="cases" id="cases">
-        <div class="cases-header"><h2>成功案例</h2><p>已为 50+ 企业提供数字化转型服务</p></div>
-        <div class="grid-2">
-            <div class="case-card"><div class="case-img"><img src="https://picsum.photos/seed/c1/600/340" alt="Case 1"></div><div class="case-info"><p class="case-tag">金融科技</p><h3>某银行智能客服系统</h3><p>基于RAG技术构建企业知识库</p><a href="case-bank.html" class="case-link">详情</a></div></div>
-            <div class="case-card"><div class="case-img"><img src="https://picsum.photos/seed/c2/600/340" alt="Case 2"></div><div class="case-info"><p class="case-tag">电商平台</p><h3>某电商自动化工作流</h3><p>AI Agent实现订单处理自动化</p><a href="case-ecommerce.html" class="case-link">详情</a></div></div>
-        </div>
-    </section>
-    <section class="about" id="about">
-        <div class="about-content">
-            <h2>用技术创造无限可能</h2>
-            <p>创野风暴是一家专注于企业级定制开发和 AI Agent 研发的技术公司。我们相信，优秀的技术应当服务于业务价值创造，而非成为企业的负担。</p>
-            <div class="stats"><div><p class="stat-number">100+</p><p class="stat-label">成功交付项目</p></div><div><p class="stat-number">50+</p><p class="stat-label">企业客户</p></div><div><p class="stat-number">5年</p><p class="stat-label">行业深耕</p></div></div>
-        </div>
-    </section>
-    <section class="contact" id="contact">
-        <h2>开启合作</h2>
-        <p>准备好升级您的企业数字化能力了吗？</p>
-        <form class="contact-form"><input type="text" placeholder="您的姓名"><input type="email" placeholder="邮箱地址"><textarea placeholder="请描述您的需求"></textarea><button type="submit">提交</button></form>
-    </section>
-    <footer><div class="footer-content"><div class="footer-logo">创野风暴</div><div class="footer-links"><a href="#">隐私政策</a></div></div></footer>
-<script>
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.section,.ai-visual,.ai-text,.cases-header,.case-card,.about-content').forEach(el => {
-    observer.observe(el);
-});
-</script>
-</body>
-</html>
+    <section class="hero"><div class="hero-content"><h1><span class="chuang">创野</span><span class="feng">风暴</span></h1><p class="hero-subtitle">企业级定制开发与 AI Agent 研发<br>为 B 端企业提供全链路数字化转型服务</p><div class="hero-cta"><a href="#contact" class="hero-cta-primary">开启合作</a><a href="#services" class="hero-cta-secondary">了解更多</a></div></div></section>
+    <section class="section" id="services"><div class="grid-2"><div class="card"><p class="card-label">核心业务</p><h3>企业级定制开发</h3><p>基于业务场景的深度定制，打造高性能、可扩展的企业软件系统</p></div><div class="card"><p class="card-label">AI 能力</p><h3>智能 Agent 研发</h3><p>基于大语言模型的智能体开发，实现业务流程的智能化升级</p></div></div></section>
+    <section class="ai-section" id="ai"><div class="ai-content"><div class="ai-grid"><div class="ai-visual"><div class="image-wrap"><img src="images/ai-hero.jpg" alt="AI"></div></div><div class="ai-text"><h2>AI Agent<br>重新定义企业效率</h2><p>基于先进的大语言模型与机器学习技术，为企业打造真正懂业务、会思考、能执行的智能助手。</p><div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><h4>自然语言交互</h4><p>支持多轮对话</p></div></div><div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg></div><div><h4>工具调用</h4><p>执行复杂流程</p></div></div><div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><h4>持续进化</h4><p>越用越聪明</p></div></div></div></div></div></div></section>
+    <section class="cases" id="cases"><div class="cases-header"><h2>成功案例</h2><p>已为 50+ 企业提供数字化转型服务</p></div><div class="grid-2"><div class="case-card"><div class="case-img"><img src="https://picsum.photos/seed/c1/600/340" alt="Case 1"></div><div class="case-info"><p class="case-tag">金融科技</p><h3>某银行智能客服系统</h3><p>基于RAG技术构建企业知识库</p><a href="case-bank.html" class="case-link">详情</a></div></div><div class="case-card
