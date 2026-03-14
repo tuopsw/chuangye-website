@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 | 创野风暴</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#000;--surface:#1d1d1f;--text:#f5f5f7;--text-secondary:#86868b;--accent:#2997ff;--ease:cubic-bezier(0.16,1,0.3,1)}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:"Inter","Noto Sans SC",-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+        a{text-decoration:none;color:inherit}
+        img{max-width:100%;display:block}
+        nav{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:center;padding:0 48px;z-index:9999;background:rgba(0,0,0,0.8);backdrop-filter:blur(20px)}
+        .nav-inner{max-width:980px;width:100%;display:flex;justify-content:space-between;align-items:center}
+        .nav-logo{font-size:18px;font-weight:500;cursor:pointer}
+        .nav-links{display:flex;gap:32px}
+        .nav-links a{font-size:12px;color:var(--text-secondary);transition:color 0.3s}
+        .nav-links a:hover,.nav-links a.active{color:var(--text)}
+        .hero{min-height:50vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 60px}
+        .hero h1{font-size:clamp(40px,8vw,72px);font-weight:600;letter-spacing:-0.02em;margin-bottom:16px}
+        .hero h1 .chuang{color:#fff}
+        .hero h1 .feng{background:linear-gradient(90deg,#2997ff,#5e5ce6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero p{font-size:clamp(18px,2.5vw,24px);color:var(--text-secondary);max-width:600px}
+        .content{max-width:800px;margin:0 auto;padding:60px 20px 120px}
+        .section{margin-bottom:80px;opacity:0;transform:translateY(40px);transition:all 1s var(--ease)}
+        .section.visible{opacity:1;transform:translateY(0)}
+        .section h2{font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-0.02em;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1)}
+        .section p{font-size:16px;color:var(--text-secondary);margin-bottom:16px;line-height:1.8}
+        .section ul{margin:16px 0}
+        .section li{font-size:15px;color:var(--text-secondary);padding:8px 0;padding-left:20px;position:relative}
+        .section li::before{content:"·";position:absolute;left:0;color:var(--accent)}
+        .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
+        .stat-card{background:var(--surface);border-radius:20px;padding:40px 24px;text-align:center;transition:all 0.5s var(--ease)}
+        .stat-card:hover{transform:translateY(-8px)}
+        .stat-number{font-size:48px;font-weight:600;color:var(--accent);margin-bottom:8px}
+        .stat-label{font-size:14px;color:var(--text-secondary)}
+        .back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:40px;color:var(--text-secondary);font-size:14px;transition:color 0.3s}
+        .back-link:hover{color:var(--accent)}
+        .back-link svg{width:16px;height:16px}
+        footer{padding:40px 20px;background:var(--surface);border-top:1px solid rgba(255,255,255,0.1);text-align:center}
+        .footer-content{max-width:980px;margin:0 auto;font-size:13px;color:var(--text-secondary)}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        @media(max-width:768px){.nav-links{display:none}.grid-3{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <nav><div class="nav-inner"><div class="nav-logo" onclick="location.href='index.html'">创野风暴</div><div class="nav-links"><a href="index.html#services">服务</a><a href="index.html#ai">AI能力</a><a href="index.html#cases">案例</a><a href="about.html" class="active">关于</a><a href="index.html#contact">联系</a></div></div></nav>
+    <section class="hero">
+        <h1><span class="chuang">关于</span><span class="feng">创野</span></h1>
+        <p>企业级定制开发与 AI Agent 研发服务商</p>
+    </section>
+    <div class="content">
+        <a href="index.html" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回首页</a>
+        
+        <div class="section">
+            <h2>品牌开篇</h2>
+            <p>创野风暴是一家专注于企业级定制化软件开发与 AI Agent 研发的全链路技术服务提供商。我们致力于为中大型企业提供「数字化转型+AI智能化升级」一体化定制解决方案，以定制化技术能力为核心，以AI商业落地为抓手，助力企业实现降本增效、业务创新与数字化壁垒构建。</p>
+            <p>我们相信，优秀的技术应当服务于业务价值创造，而非成为企业的负担。</p>
+        </div>
+        
+        <div class="section">
+            <h2>核心业务</h2>
+            <p><strong>企业级定制化软件开发</strong></p>
+            <p>提供中大型企业全场景定制化系统开发，包括企业资源管理ERP、客户关系管理CRM、供应链管理SCM、生产制造执行MES、工业互联网平台、数字化办公协同系统等。从需求调研、业务梳理、架构设计、定制开发、测试上线到运维迭代的全周期闭环服务，覆盖智能制造、零售快消、金融科技、医疗健康、能源化工、企业服务等核心行业。</p>
+            <p><strong>AI Agent 研发与商业落地</strong></p>
+            <p>专注垂直行业企业级AI Agent定制开发、大模型行业应用落地、RPA+AI智能自动化流程搭建、企业私有大模型部署与微调、智能客服/智能决策/智能运营等AI场景落地。聚焦解决企业「大模型落地难、AI与业务脱节、标准化产品无法匹配个性化需求」的核心痛点。</p>
+            <p><strong>企业数字化转型全链路解决方案</strong></p>
+            <p>针对不同发展阶段、不同行业的企业，提供从数字化诊断、顶层规划、技术落地、运营优化到AI升级的全链路一体化解决方案。</p>
+        </div>
+        
+        <div class="section">
+            <h2>技术实力</h2>
+            <p>我们拥有成熟的技术架构能力，具备高并发、高可用、高安全、可扩展的架构设计能力，适配中大型企业复杂业务场景与海量数据处理需求。在大模型微调、Agent智能体架构设计、多模态交互、自然语言处理、智能决策算法等领域积累了丰富的技术落地经验。</p>
+            <p>同时建立了标准化的研发流程、全流程质量管控体系与数据安全合规体系，持续跟进前沿技术迭代，聚焦企业业务痛点的技术创新与落地。</p>
+        </div>
+        
+        <div class="section">
+            <h2>服务成果</h2>
+            <div class="grid-3">
+                <div class="stat-card"><div class="stat-number">100+</div><div class="stat-label">成功交付项目</div></div>
+                <div class="stat-card"><div class="stat-number">50+</div><div class="stat-label">企业客户</div></div>
+                <div class="stat-card"><div class="stat-number">5年</div><div class="stat-label">行业深耕</div></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>团队优势</h2>
+            <p>核心团队来自头部互联网企业与顶级科技公司，拥有平均10年以上的企业级软件开发、AI技术落地、企业数字化转型服务经验。团队兼具深度技术研发能力、行业业务理解能力、全流程项目管理能力与落地服务能力，能够精准把握企业客户的业务痛点，提供真正匹配需求的解决方案。</p>
+        </div>
+        
+        <div class="section">
+            <h2>品牌理念</h2>
+            <p><strong>客户为先</strong> — 深度理解业务需求，提供真正创造价值的解决方案</p>
+            <p><strong>技术为本</strong> — 持续深耕前沿技术，保持技术领先性与创新性</p>
+            <p><strong>务实落地</strong> — 注重实际效果，所有方案都追求可量化成果</p>
+            <p><strong>安全合规</strong> — 严格的数据安全管理体系，保障企业核心数据安全</p>
+        </div>
+        
+        <div class="section">
+            <h2>品牌简介</h2>
+            <p><strong>浓缩版（100字）</strong></p>
+            <p>创野风暴是企业级定制化软件开发与AI Agent研发服务商，专注为中大型企业提供数字化转型与AI智能化升级一体化解决方案。已服务100+企业客户，覆盖金融、制造、零售等多个行业。</p>
+            <p><strong>标准版（300字）</strong></p>
+            <p>创野风暴是一家专注于企业级定制化软件开发与AI Agent研发的全链路技术服务提供商。核心业务包括：企业级定制化软件开发（ERP、CRM、MES等）、AI Agent定制开发与大模型落地、企业数字化转型全链路解决方案。团队来自头部互联网企业，拥有平均10年以上的企业级技术落地经验，已为100+中大型企业提供数字化转型服务，覆盖智能制造、金融科技、零售快消、医疗健康等多个行业。我们坚持以定制化技术能力为核心，以AI商业落地为抓手，助力企业实现降本增效与业务创新。</p>
+            <p><strong>详细版（500字）</strong></p>
+            <p>创野风暴是一家专注于企业级定制化软件开发与AI Agent研发的全链路技术服务提供商。品牌定位为专注为中大型企业提供「数字化转型+AI智能化升级」一体化定制解决方案的高端技术服务商。</p>
+            <p>核心业务涵盖三大板块：企业级定制化软件开发服务（ERP、CRM、SCM、MES、工业互联网平台等）、AI Agent研发与商业落地服务（垂直行业Agent开发、大模型应用落地、RPA+AI自动化、私有化部署等）、企业数字化转型全链路解决方案。</p>
+            <p>核心技术能力包括：高并发高可用架构设计、大模型微调与Agent智能体架构、多模态交互与自然语言处理等。团队核心成员来自头部互联网企业，平均10年以上企业级技术服务经验，已成功交付100+项目，服务50+企业客户，覆盖智能制造、金融科技、零售快消、医疗健康、能源化工等多个行业。</p>
+            <p>我们秉持「客户为先、技术为本、务实落地、安全合规」的核心价值观，为企业提供全流程透明化项目管理、标准化交付流程、7*24小时运维支持与持续迭代服务。</p>
+        </div>
+    </div>
+    <footer><div class="footer-content">© 2026 创野风暴科技有限公司</div></footer>
+    <script>
+        const observer = new IntersectionObserver((entries) => {entries.forEach(e => {if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
+        document.querySelectorAll('.section').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
