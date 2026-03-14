@@ -6,314 +6,147 @@
     <title>创野风暴 | 企业级定制开发 · AI Agent</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-primary: #000000;
-            --bg-secondary: #0d0d0d;
-            --bg-tertiary: #141414;
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255,255,255,0.55);
-            --text-tertiary: rgba(255,255,255,0.35);
-            --accent: #2997ff;
-            --border: rgba(255,255,255,0.08);
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 max(22px, calc((100vw - 1024px) / 2));
-            z-index: 9999;
-            background: rgba(0,0,0,0.72);
-            backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-logo { font-size: 21px; font-weight: 600; color: var(--text-primary); text-decoration: none; }
-        .nav-links { display: flex; gap: 36px; list-style: none; }
-        .nav-links a { font-size: 12px; color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--text-primary); }
-        .nav-cta { padding: 6px 16px; background: var(--accent); color: #000; font-size: 12px; font-weight: 500; border-radius: 980px; text-decoration: none; }
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 22px 80px;
-            position: relative;
-            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(41,151,255,0.15), transparent 60%);
-        }
-        .hero-tag { font-size: 19px; color: var(--accent); margin-bottom: 16px; }
-        .hero h1 { font-size: clamp(48px, 8vw, 96px); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; }
-        .hero-subtitle { font-size: clamp(21px, 3vw, 28px); color: var(--text-secondary); max-width: 680px; margin-bottom: 48px; }
-        .hero-cta-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-        .hero-cta { padding: 18px 36px; border-radius: 980px; font-size: 17px; font-weight: 500; text-decoration: none; }
-        .hero-cta-primary { background: var(--accent); color: #000; }
-        .hero-cta-secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-        .services, .ai-highlight, .cases, .about, .contact { padding: 160px 22px; }
-        .services, .cases { background: var(--bg-secondary); }
-        .section-header { text-align: center; margin-bottom: 100px; }
-        .section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 16px; }
-        .section-title { font-size: clamp(40px, 5vw, 56px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; }
-        .section-desc { font-size: 21px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
-        .service-card { background: var(--bg-tertiary); border-radius: 24px; padding: 48px; border: 1px solid var(--border); transition: all 0.4s; }
-        .service-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
-        .service-icon { width: 56px; height: 56px; margin-bottom: 24px; stroke: var(--accent); }
-        .service-card h3 { font-size: 24px; font-weight: 600; margin-bottom: 12px; }
-        .service-card p { font-size: 17px; color: var(--text-secondary); margin-bottom: 24px; }
-        .service-features { list-style: none; }
-        .service-features li { font-size: 14px; color: var(--text-tertiary); padding: 8px 0; display: flex; align-items: center; gap: 10px; }
-        .service-features li::before { content: ''; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; }
-        .ai-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
-        .ai-image { width: 100%; border-radius: 24px; }
-        .ai-text h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; margin-bottom: 24px; }
-        .ai-text > p { font-size: 19px; color: var(--text-secondary); margin-bottom: 32px; }
-        .ai-cap { display: flex; gap: 16px; padding: 20px; background: var(--bg-tertiary); border-radius: 16px; border: 1px solid var(--border); margin-bottom: 12px; }
-        .ai-cap-icon { width: 40px; height: 40px; background: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .ai-cap-icon svg { width: 20px; height: 20px; stroke: #000; }
-        .ai-cap h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
-        .ai-cap p { font-size: 14px; color: var(--text-secondary); }
-        .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
-        .case-card { background: var(--bg-tertiary); border-radius: 24px; overflow: hidden; border: 1px solid var(--border); transition: all 0.4s; }
-        .case-card:hover { transform: translateY(-8px); }
-        .case-image { width: 100%; height: 240px; object-fit: cover; }
-        .case-info { padding: 28px; }
-        .case-tag { font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
-        .case-info h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
-        .case-info p { font-size: 15px; color: var(--text-secondary); }
-        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
-        .about-content h2 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 32px; }
-        .about-content > p { font-size: 21px; color: var(--text-secondary); margin-bottom: 60px; }
-        .stats-row { display: flex; justify-content: center; gap: 80px; padding-top: 60px; border-top: 1px solid var(--border); }
-        .stat-number { font-size: 56px; font-weight: 700; }
-        .stat-label { font-size: 15px; color: var(--text-secondary); }
-        .contact { text-align: center; }
-        .contact h2 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 20px; }
-        .contact > p { font-size: 21px; color: var(--text-secondary); margin-bottom: 48px; }
-        .contact-form { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 18px 24px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 14px; color: var(--text-primary); font-size: 17px; outline: none; }
-        .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--text-tertiary); }
-        .contact-submit { padding: 18px 36px; background: var(--accent); color: #000; border: none; border-radius: 980px; font-size: 17px; font-weight: 500; cursor: pointer; }
-        footer { padding: 40px 22px; background: var(--bg-primary); border-top: 1px solid var(--border); }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .footer-logo { font-size: 18px; font-weight: 600; }
-        .footer-links { display: flex; gap: 32px; }
-        .footer-links a { font-size: 12px; color: var(--text-secondary); text-decoration: none; }
-        @media (max-width: 1024px) {
-            .services-grid { grid-template-columns: 1fr; }
-            .ai-content { grid-template-columns: 1fr; }
-            .cases-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 40px; }
-            .cases-grid { grid-template-columns: 1fr; }
-            .stats-row { flex-direction: column; gap: 32px; }
-            .footer-content { flex-direction: column; text-align: center; }
-        }
+        :root{--bg-primary:#0a0c14;--bg-secondary:#0d1117;--bg-card:#1a1f2e;--text-primary:#fff;--text-secondary:rgba(255,255,255,0.72);--text-tertiary:rgba(255,255,255,0.48);--accent:#00d4aa;--accent-dim:rgba(0,212,170,0.15);--accent-hover:#00e8bc;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--gradient-hero:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,212,170,0.08),transparent 60%);--font-sans:"Inter","Noto Sans SC",-apple-system,sans-serif;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-sans);background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        a{text-decoration:none;color:inherit}
+        ul{list-style:none}
+        .progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:10000}
+        nav{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;z-index:9999;background:transparent;transition:all .4s var(--ease-out-expo)}
+        nav.scrolled{background:rgba(10,12,20,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+        .nav-logo{font-size:20px;font-weight:600}
+        .nav-logo span{color:var(--accent)}
+        .nav-links{display:flex;gap:40px}
+        .nav-links a{font-size:13px;font-weight:500;color:var(--text-secondary);position:relative}
+        .nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+        .nav-links a:hover{color:var(--text-primary)}
+        .nav-links a:hover::after{width:100%}
+        .nav-cta{padding:8px 20px;background:var(--accent);color:#000;font-size:13px;font-weight:600;border-radius:100px}
+        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 100px;position:relative;background:var(--gradient-hero);overflow:hidden}
+        .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite}
+        @keyframes gridMove{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
+        .hero-tag{font-size:13px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:0;transform:translateY(20px);animation:fadeInUp .8s var(--ease-out-expo) .2s forwards}
+        .hero h1{font-size:clamp(48px,7vw,96px);font-weight:700;line-height:1.05;letter-spacing:-.04em;margin-bottom:28px;opacity:0;transform:translateY(30px)}
+        .hero h1 .line{display:block;opacity:0;transform:translateY(40px)}
+        .hero h1 .line:nth-child(1){animation:fadeInUp .8s var(--ease-out-expo) .3s forwards}
+        .hero h1 .line:nth-child(2){animation:fadeInUp .8s var(--ease-out-expo) .45s forwards}
+        .hero-subtitle{font-size:clamp(18px,2.2vw,24px);color:var(--text-secondary);max-width:640px;margin-bottom:48px;opacity:0;transform:translateY(20px);animation:fadeInUp .8s var(--ease-out-expo) .6s forwards}
+        .hero-cta-group{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;opacity:0;transform:translateY(20px);animation:fadeInUp .8s var(--ease-out-expo) .75s forwards}
+        .hero-cta{padding:16px 32px;border-radius:100px;font-size:15px;font-weight:600;transition:all .35s var(--ease-out-expo)}
+        .hero-cta-primary{background:var(--accent);color:#000}
+        .hero-cta-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,0.35)}
+        .hero-cta-secondary{background:transparent;border:1px solid var(--border)}
+        .hero-cta-secondary:hover{border-color:var(--accent);color:var(--accent)}
+        @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+        .section{padding:120px 24px}
+        .section-bg{background:var(--bg-secondary)}
+        .section-header{text-align:center;margin-bottom:80px;max-width:700px;margin:0 auto 80px}
+        .section-label{font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+        .section-title{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.03em;margin-bottom:20px}
+        .section-desc{font-size:18px;color:var(--text-secondary)}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s var(--ease-out-expo)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}
+        .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1100px;margin:0 auto}
+        .service-card{background:var(--bg-card);border-radius:20px;padding:48px;border:1px solid var(--border);transition:all .4s var(--ease-out-expo);position:relative}
+        .service-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .4s}
+        .service-card:hover{transform:translateY(-8px);border-color:var(--border-hover);box-shadow:0 20px 40px rgba(0,0,0,0.3)}
+        .service-card:hover::before{opacity:1}
+        .service-icon{width:52px;height:52px;margin-bottom:24px;color:var(--accent)}
+        .service-card:hover .service-icon{transform:scale(1.08)}
+        .service-card h3{font-size:22px;font-weight:600;margin-bottom:12px}
+        .service-card>p{font-size:15px;color:var(--text-secondary);margin-bottom:24px;line-height:1.7}
+        .service-features li{font-size:13px;color:var(--text-tertiary);padding:8px 0;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+        .service-features li:last-child{border:0}
+        .service-features li::before{content:"";width:4px;height:4px;background:var(--accent);border-radius:50%}
+        .ai-section{background:var(--bg-secondary)}
+        .ai-content{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto}
+        .ai-visual{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3}
+        .ai-visual img{width:100%;height:100%;object-fit:cover}
+        .ai-visual::after{content:"";position:absolute;inset:0;border-radius:20px;border:1px solid var(--border)}
+        .ai-text h2{font-size:clamp(32px,4vw,44px);font-weight:700;letter-spacing:-.03em;margin-bottom:24px;line-height:1.2}
+        .ai-text>p{font-size:16px;color:var(--text-secondary);margin-bottom:36px;line-height:1.8}
+        .ai-cap{display:flex;gap:16px;padding:20px;background:var(--bg-card);border-radius:14px;border:1px solid var(--border);margin-bottom:12px;transition:all .3s}
+        .ai-cap:hover{border-color:var(--border-hover);transform:translateX(4px)}
+        .ai-cap-icon{width:40px;height:40px;background:var(--accent-dim);border-radius:10px;display:flex;align-items:center;justify-content:center}
+        .ai-cap-icon svg{width:20px;height:20px;stroke:var(--accent)}
+        .ai-cap h4{font-size:15px;font-weight:600;margin-bottom:4px}
+        .ai-cap p{font-size:13px;color:var(--text-tertiary)}
+        .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+        .case-card{background:var(--bg-card);border-radius:20px;overflow:hidden;border:1px solid var(--border);transition:all .5s var(--ease-out-expo)}
+        .case-card:hover{transform:translateY(-12px);box-shadow:0 24px 48px rgba(0,0,0,0.35)}
+        .case-image-wrap{aspect-ratio:16/10}
+        .case-image-wrap img{width:100%;height:100%;object-fit:cover}
+        .case-card:hover .case-image-wrap img{transform:scale(1.02)}
+        .case-info{padding:28px}
+        .case-tag{font-size:11px;font-weight:600;color:var(--accent);margin-bottom:12px;display:inline-block;padding:4px 10px;background:var(--accent-dim);border-radius:100px}
+        .case-info h3{font-size:18px;font-weight:600;margin-bottom:8px}
+        .case-info p{font-size:14px;color:var(--text-tertiary);line-height:1.6}
+        .about-section{background:var(--bg-secondary);text-align:center}
+        .about-content{max-width:800px;margin:0 auto}
+        .about-content h2{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.03em;margin-bottom:32px}
+        .about-content>p{font-size:18px;color:var(--text-secondary);margin-bottom:60px;line-height:1.8}
+        .stats-row{display:flex;justify-content:center;gap:80px;padding-top:60px;border-top:1px solid var(--border)}
+        .stat-number{font-size:56px;font-weight:700;margin-bottom:8px}
+        .stat-label{font-size:14px;color:var(--text-tertiary)}
+        .contact{text-align:center}
+        .contact h2{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.03em;margin-bottom:20px}
+        .contact>p{font-size:18px;color:var(--text-secondary);margin-bottom:48px}
+        .contact-form{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+        .contact-form input,.contact-form textarea{width:100%;padding:18px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;color:var(--text-primary);font-size:15px;font-family:var(--font-sans);outline:none;transition:all .3s}
+        .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--text-tertiary)}
+        .contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent);transform:scale(1.01)}
+        .contact-form textarea{min-height:120px;resize:vertical}
+        .contact-submit{padding:18px 36px;background:var(--accent);color:#000;border:none;border-radius:100px;font-size:15px;font-weight:600;cursor:pointer}
+        .contact-submit:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,0.35)}
+        footer{padding:48px 24px;background:var(--bg-primary);border-top:1px solid var(--border)}
+        .footer-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+        .footer-logo{font-size:18px;font-weight:600}
+        .footer-logo span{color:var(--accent)}
+        .footer-links{display:flex;gap:32px}
+        .footer-links a{font-size:13px;color:var(--text-tertiary)}
+        .footer-links a:hover{color:var(--text-primary)}
+        .footer-copy{font-size:12px;color:var(--text-tertiary)}
+        @media(max-width:1024px){.services-grid{grid-template-columns:1fr}.ai-content{grid-template-columns:1fr;gap:48px}.cases-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){.nav-links{display:none}.hero h1{font-size:40px}.cases-grid{grid-template-columns:1fr}.stats-row{flex-direction:column;gap:32px}.footer-content{flex-direction:column;text-align:center}.service-card{padding:32px}}
     </style>
 </head>
 <body>
-    <nav>
-        <a href="#" class="nav-logo">创野风暴</a>
-        <ul class="nav-links">
-            <li><a href="#services">服务</a></li>
-            <li><a href="#ai">AI能力</a></li>
-            <li><a href="#cases">案例</a></li>
-            <li><a href="#about">关于</a></li>
-        </ul>
-        <a href="#contact" class="nav-cta">联系我们</a>
-    </nav>
-
-    <section class="hero">
-        <p class="hero-tag">企业级技术解决方案</p>
-        <h1>创野风暴</h1>
-        <p class="hero-subtitle">专注于定制开发与 AI Agent 研发<br>为 B 端企业提供全链路数字化转型服务</p>
-        <div class="hero-cta-group">
-            <a href="#contact" class="hero-cta hero-cta-primary">开启合作</a>
-            <a href="#services" class="hero-cta hero-cta-secondary">了解服务</a>
-        </div>
-    </section>
-
-    <section class="services" id="services">
-        <div class="section-header">
-            <p class="section-label">Core Services</p>
-            <h2 class="section-title">核心业务</h2>
-            <p class="section-desc">从需求分析到落地交付，提供端到端的技术服务</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
-                <h3>企业级定制开发</h3>
-                <p>基于业务场景的深度定制，打造高性能、可扩展的企业软件系统</p>
-                <ul class="service-features">
-                    <li>Web 应用与管理系统</li>
-                    <li>移动端 App 开发</li>
-                    <li>微服务架构设计</li>
-                    <li>遗留系统现代化改造</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/></svg>
-                <h3>AI Agent 研发</h3>
-                <p>基于大语言模型的智能体开发，实现业务流程的智能化升级</p>
-                <ul class="service-features">
-                    <li>智能客服与对话系统</li>
-                    <li>自动化工作流 Agent</li>
-                    <li>企业知识库 RAG 方案</li>
-                    <li>多 Agent 协同系统</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
-                <h3>数字化转型咨询</h3>
-                <p>系统性诊断与规划，助力企业完成数字化能力建设</p>
-                <ul class="service-features">
-                    <li>数字化成熟度评估</li>
-                    <li>技术架构规划</li>
-                    <li>数据中台建设</li>
-                    <li>云原生迁移方案</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
-                <h3>技术赋能培训</h3>
-                <p>为企业技术团队提供前沿技术培训与能力建设</p>
-                <ul class="service-features">
-                    <li>AI 开发实战培训</li>
-                    <li>架构设计工作坊</li>
-                    <li>代码质量提升</li>
-                    <li>DevOps 能力建设</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="ai-highlight" id="ai">
-        <div class="ai-content">
-            <div class="ai-visual">
-                <img src="https://picsum.photos/seed/ai-agent/600/400" alt="AI Agent" class="ai-image">
-            </div>
-            <div class="ai-text">
-                <h2>AI Agent<br>重新定义企业效率</h2>
-                <p>基于先进的大语言模型与机器学习技术，为企业打造真正懂业务、会思考、能执行的智能助手。</p>
-                <div class="ai-cap">
-                    <div class="ai-cap-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-                    <div><h4>自然语言交互</h4><p>支持多轮对话、上下文理解</p></div>
-                </div>
-                <div class="ai-cap">
-                    <div class="ai-cap-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4"/></svg></div>
-                    <div><h4>工具调用能力</h4><p>对接企业现有系统，执行复杂业务流程</p></div>
-                </div>
-                <div class="ai-cap">
-                    <div class="ai-cap-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div>
-                    <div><h4>持续学习进化</h4><p>基于反馈自动优化，越用越聪明</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cases" id="cases">
-        <div class="section-header">
-            <p class="section-label">Case Studies</p>
-            <h2 class="section-title">精选案例</h2>
-            <p class="section-desc">与领先企业共同打造的数字化成果</p>
-        </div>
-        <div class="cases-grid">
-            <div class="case-card">
-                <img src="https://picsum.photos/seed/case1/400/240" alt="智能客服" class="case-image">
-                <div class="case-info">
-                    <p class="case-tag">AI Agent</p>
-                    <h3>智能客服中台</h3>
-                    <p>为头部电商平台打造的智能客服系统，日均处理咨询 50万+</p>
-                </div>
-            </div>
-            <div class="case-card">
-                <img src="https://picsum.photos/seed/case2/400/240" alt="制造数字化" class="case-image">
-                <div class="case-info">
-                    <p class="case-tag">定制开发</p>
-                    <h3>智能制造管理平台</h3>
-                    <p>整合生产、仓储、质检全流程，生产效率提升 35%</p>
-                </div>
-            </div>
-            <div class="case-card">
-                <img src="https://picsum.photos/seed/case3/400/240" alt="金融风控" class="case-image">
-                <div class="case-info">
-                    <p class="case-tag">AI 应用</p>
-                    <h3>智能风控决策引擎</h3>
-                    <p>实时风险评估系统，风险识别准确率提升至 96.5%</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="about-content">
-            <h2>用技术创造无限可能</h2>
-            <p>创野风暴是一家专注于企业级定制开发和 AI Agent 研发的技术公司。我们相信，优秀的技术应当服务于业务价值创造，而非成为企业的负担。</p>
-            <div class="stats-row">
-                <div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">成功交付项目</div></div>
-                <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">企业客户</div></div>
-                <div class="stat-item"><div class="stat-number">5年</div><div class="stat-label">行业深耕</div></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <h2>开启您的项目</h2>
-        <p>告诉我们您的需求，让我们一起创造非凡</p>
-        <div class="contact-form">
-            <a href="mailto:915009069@qq.com?subject=【创野风暴】项目咨询&body=您好，我想咨询以下业务：%0D%0A%0D%0A1. 姓名：%0D%0A2. 公司名称：%0D%0A3. 联系电话：%0D%0A4. 需求描述：" class="contact-submit" style="text-align:center;display:flex;align-items:center;justify-content:center;text-decoration:none;">📧 发送邮件咨询</a>
-            <p style="color:var(--text-secondary);font-size:14px;text-align:center;margin-top:16px;">点击按钮将打开您的邮箱，填写信息后发送给我们</p>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">创野风暴</div>
-            <div class="footer-links">
-                <a href="#services">服务</a>
-                <a href="#ai">AI能力</a>
-                <a href="#cases">案例</a>
-                <a href="#about">关于</a>
-            </div>
-            <div class="footer-copy">© 2026 创野风暴. All rights reserved.</div>
-        </div>
-    </footer>
-
+    <div class="progress-bar" id="progressBar"></div>
+    <nav id="nav"><a href="#" class="nav-logo">创野<span>风暴</span></a><ul class="nav-links"><li><a href="#services">服务</a></li><li><a href="#ai">AI能力</a></li><li><a href="#cases">案例</a></li><li><a href="#about">关于</a></li></ul><a href="#contact" class="nav-cta">联系我们</a></nav>
+    <section class="hero"><p class="hero-tag">企业级技术解决方案</p><h1><span class="line">创野风暴</span><span class="line">让技术创造价值</span></h1><p class="hero-subtitle">专注于企业级定制开发与 AI Agent 研发<br>为 B 端企业提供全链路数字化转型服务</p><div class="hero-cta-group"><a href="#contact" class="hero-cta hero-cta-primary">开启合作</a><a href="#services" class="hero-cta hero-cta-secondary">了解服务</a></div></section>
+    <section class="section section-bg" id="services"><div class="section-header reveal"><p class="section-label">Core Services</p><h2 class="section-title">核心业务</h2><p class="section-desc">从需求分析到落地交付，提供端到端的技术服务</p></div><div class="services-grid"><div class="service-card reveal reveal-delay-1"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg><h3>企业级定制开发</h3><p>基于业务场景的深度定制，打造高性能、可扩展的企业软件系统</p><ul class="service-features"><li>Web 应用与管理系统</li><li>移动端 App 开发</li><li>微服务架构设计</li><li>遗留系统现代化改造</li></ul></div><div class="service-card reveal reveal-delay-2"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/></svg><h3>AI Agent 研发</h3><p>基于大语言模型的智能体开发，实现业务流程的智能化升级</p><ul class="service-features"><li>智能客服与对话系统</li><li>自动化工作流 Agent</li><li>企业知识库 RAG 方案</li><li>多 Agent 协同系统</li></ul></div><div class="service-card reveal reveal-delay-3"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg><h3>数字化转型咨询</h3><p>系统性诊断与规划，助力企业完成数字化能力建设</p><ul class="service-features"><li>数字化成熟度评估</li><li>技术架构规划</li><li>数据中台建设</li><li>云原生迁移方案</li></ul></div><div class="service-card reveal reveal-delay-4"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg><h3>技术赋能培训</h3><p>为企业技术团队提供前沿技术培训与能力建设</p><ul class="service-features"><li>AI 开发实战培训</li><li>架构设计工作坊</li><li>代码质量提升</li><li>DevOps 能力建设</li></ul></div></div></section>
+    <section class="section ai-section" id="ai"><div class="ai-content"><div class="ai-visual reveal"><img src="https://picsum.photos/seed/chuangye1/800/600" alt="AI Agent"></div><div class="ai-text"><h2 class="reveal">AI Agent<br>重新定义企业效率</h2><p class="reveal reveal-delay-1">基于先进的大语言模型与机器学习技术，为企业打造真正懂业务、会思考、能执行的智能助手。</p><div class="ai-cap reveal reveal-delay-2"><div class="ai-cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><h4>自然语言交互</h4><p>支持多轮对话、上下文理解</p></div></div><div class="ai-cap reveal reveal-delay-3"><div class="ai-cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="4"/></svg></div><div><h4>工具调用能力</h4><p>对接企业现有系统，执行复杂业务流程</p></div></div><div class="ai-cap reveal reveal-delay-4"><div class="ai-cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><h4>持续学习进化</h4><p>基于反馈自动优化，越用越聪明</p></div></div></div></div></section>
+    <section class="section section-bg" id="cases"><div class="section-header reveal"><p class="section-label">Case Studies</p><h2 class="section-title">精选案例</h2><p class="section-desc">与领先企业共同打造的数字化成果</p></div><div class="cases-grid"><div class="case-card reveal reveal-delay-1"><div class="case-image-wrap"><img src="https://picsum.photos/seed/chuangye2/400/250" alt="智能客服"></div><div class="case-info"><span class="case-tag">AI Agent</span><h3>智能客服中台</h3><p>为头部电商平台打造的智能客服系统，日均处理咨询 50万+</p></div></div><div class="case-card reveal reveal-delay-2"><div class="case-image-wrap"><img src="https://picsum.photos/seed/chuangye3/400/250" alt="制造数字化"></div><div class="case-info"><span class="case-tag">定制开发</span><h3>智能制造管理平台</h3><p>整合生产、仓储、质检全流程，生产效率提升 35%</p></div></div><div class="case-card reveal reveal-delay-3"><div class="case-image-wrap"><img src="https://picsum.photos/seed/chuangye4/400/250" alt="金融风控"></div><div class="case-info"><span class="case-tag">AI 应用</span><h3>智能风控决策引擎</h3><p>实时风险评估系统，风险识别准确率提升至 96.5%</p></div></div></div></section>
+    <section class="section about-section" id="about"><div class="about-content reveal"><h2>用技术创造无限可能</h2><p>创野风暴是一家专注于企业级定制开发和 AI Agent 研发的技术公司。我们相信，优秀的技术应当服务于业务价值创造，而非成为企业的负担。</p><div class="stats-row"><div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">成功交付项目</div></div><div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">企业客户</div></div><div class="stat-item"><div class="stat-number">5年</div><div class="stat-label">行业深耕</div></div></div></div></section>
+    <section class="section" id="contact"><div class="section-header reveal"><p class="section-label">Contact</p><h2 class="section-title">开启您的项目</h2><p class="section-desc">告诉我们您的需求，让我们一起创造非凡</p></div><form class="contact-form reveal"><input type="text" placeholder="您的姓名" required><input type="email" placeholder="邮箱地址" required><input type="tel" placeholder="联系电话"><textarea placeholder="请描述您的需求..." required></textarea><button type="submit" class="contact-submit">提交咨询</button></form></section>
+    <footer><div class="footer-content"><div class="footer-logo">创野<span>风暴</span></div><div class="footer-links"><a href="#services">服务</a><a href="#ai">AI能力</a><a href="#cases">案例</a><a href="#about">关于</a></div><div class="footer-copy">© 2026 创野风暴. All rights reserved.</div></div></footer>
     <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        // Progress Bar
+        const progressBar = document.getElementById("progressBar");
+        window.addEventListener("scroll", () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.width = scrolled + "%";
+        });
+        // Nav Scroll
+        const nav = document.getElementById("nav");
+        window.addEventListener("scroll", () => {
+            nav.classList.toggle("scrolled", window.scrollY > 50);
+        });
+        // Reveal on Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add("visible");
             });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            nav.style.background = window.scrollY > 50 ? 'rgba(0,0,0,0.92)' : 'rgba(0,0,0,0.72)';
-        });
-
-        // Form submit
-        document.querySelector('.contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('感谢您的咨询！我们会尽快与您联系。');
+        }, { threshold: 0.1 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+            });
         });
     </script>
 </body>
