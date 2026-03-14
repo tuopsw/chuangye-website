@@ -6,7 +6,7 @@
     <title>创野风暴 | 企业级定制开发 · AI Agent</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root{--bg-primary:#0a0c14;--bg-secondary:#0d1117;--bg-card:#1a1f2e;--text-primary:#fff;--text-secondary:rgba(255,255,255,0.72);--text-tertiary:rgba(255,255,255,0.48);--accent:#00d4aa;--accent-dim:rgba(0,212,170,0.15);--accent-hover:#00e8bc;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--gradient-hero:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,212,170,0.08),transparent 60%);--font-sans:"Inter","Noto Sans SC",-apple-system,sans-serif;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}
+        :root{--bg-primary:#000000;--bg-secondary:#0d1117;--bg-card:#1a1f2e;--text-primary:#fff;--text-secondary:rgba(255,255,255,0.72);--text-tertiary:rgba(255,255,255,0.48);--accent:#00d4aa;--accent-dim:rgba(0,212,170,0.15);--accent-hover:#00e8bc;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--gradient-hero:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,212,170,0.12),transparent 60%);--font-sans:"Inter","Noto Sans SC",-apple-system,sans-serif;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
         body{font-family:var(--font-sans);background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -14,7 +14,7 @@
         ul{list-style:none}
         .progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:10000}
         nav{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;z-index:9999;background:transparent;transition:all .4s var(--ease-out-expo)}
-        nav.scrolled{background:rgba(10,12,20,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+        nav.scrolled{background:rgba(0,0,0,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
         .nav-logo{font-size:20px;font-weight:600}
         .nav-logo span{color:var(--accent)}
         .nav-links{display:flex;gap:40px}
@@ -23,19 +23,21 @@
         .nav-links a:hover{color:var(--text-primary)}
         .nav-links a:hover::after{width:100%}
         .nav-cta{padding:8px 20px;background:var(--accent);color:#000;font-size:13px;font-weight:600;border-radius:100px}
-        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 100px;position:relative;background:var(--gradient-hero);overflow:hidden}
-        .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite}
-        @keyframes gridMove{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
-        .hero-tag{font-size:13px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:0;transform:translateY(20px);animation:fadeInUp .8s var(--ease-out-expo) .2s forwards}
-        .hero h1{font-size:clamp(48px,7vw,96px);font-weight:700;line-height:1.05;letter-spacing:-.04em;margin-bottom:28px;opacity:0;transform:translateY(30px)}
+        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 100px;position:relative;background:var(--bg-primary);overflow:hidden}
+        /* 呼吸荧光灯效果 */
+        .hero::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,170,0.15) 0%,transparent 70%);border-radius:50%;animation:breathGlow 4s ease-in-out infinite;pointer-events:none}
+        .hero::after{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,212,170,0.08),transparent 60%);pointer-events:none}
+        @keyframes breathGlow{0%,100%{opacity:0.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}}
+        .hero-tag{font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:32px;opacity:0;transform:translateY(20px);animation:fadeInUp .8s var(--ease-out-expo) .2s forwards}
+        .hero h1{font-size:clamp(64px,10vw,140px);font-weight:700;line-height:1;letter-spacing:-.03em;margin-bottom:24px;opacity:0;transform:translateY(40px);text-align:center}
         .hero h1 .line{display:block;opacity:0;transform:translateY(40px)}
-        .hero h1 .line:nth-child(1){animation:fadeInUp .8s var(--ease-out-expo) .3s forwards}
-        .hero h1 .line:nth-child(2){animation:fadeInUp .8s var(--ease-out-expo) .45s forwards}
-        .hero-subtitle{font-size:clamp(18px,2.2vw,24px);color:var(--text-secondary);max-width:640px;margin-bottom:48px;opacity:0;transform:translateY(20px);animation:fadeInUp .8s var(--ease-out-expo) .6s forwards}
-        .hero-cta-group{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;opacity:0;transform:translateY(20px);animation:fadeInUp .8s var(--ease-out-expo) .75s forwards}
+        .hero h1 .line:nth-child(1){animation:fadeInUp 1s var(--ease-out-expo) .3s forwards}
+        .hero h1 .line:nth-child(2){animation:fadeInUp 1s var(--ease-out-expo) .5s forwards}
+        .hero-subtitle{font-size:clamp(18px,2.5vw,28px);color:var(--text-secondary);max-width:680px;margin-bottom:48px;opacity:0;transform:translateY(20px);animation:fadeInUp .8s var(--ease-out-expo) .7s forwards}
+        .hero-cta-group{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;opacity:0;transform:translateY(20px);animation:fadeInUp .8s var(--ease-out-expo) .9s forwards}
         .hero-cta{padding:16px 32px;border-radius:100px;font-size:15px;font-weight:600;transition:all .35s var(--ease-out-expo)}
         .hero-cta-primary{background:var(--accent);color:#000}
-        .hero-cta-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,0.35)}
+        .hero-cta-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,0.4)}
         .hero-cta-secondary{background:transparent;border:1px solid var(--border)}
         .hero-cta-secondary:hover{border-color:var(--accent);color:var(--accent)}
         @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
@@ -51,7 +53,7 @@
         .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1100px;margin:0 auto}
         .service-card{background:var(--bg-card);border-radius:20px;padding:48px;border:1px solid var(--border);transition:all .4s var(--ease-out-expo);position:relative}
         .service-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .4s}
-        .service-card:hover{transform:translateY(-8px);border-color:var(--border-hover);box-shadow:0 20px 40px rgba(0,0,0,0.3)}
+        .service-card:hover{transform:translateY(-8px);border-color:var(--border-hover);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
         .service-card:hover::before{opacity:1}
         .service-icon{width:52px;height:52px;margin-bottom:24px;color:var(--accent)}
         .service-card:hover .service-icon{transform:scale(1.08)}
@@ -75,7 +77,7 @@
         .ai-cap p{font-size:13px;color:var(--text-tertiary)}
         .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
         .case-card{background:var(--bg-card);border-radius:20px;overflow:hidden;border:1px solid var(--border);transition:all .5s var(--ease-out-expo)}
-        .case-card:hover{transform:translateY(-12px);box-shadow:0 24px 48px rgba(0,0,0,0.35)}
+        .case-card:hover{transform:translateY(-12px);box-shadow:0 24px 48px rgba(0,0,0,0.4)}
         .case-image-wrap{aspect-ratio:16/10}
         .case-image-wrap img{width:100%;height:100%;object-fit:cover}
         .case-card:hover .case-image-wrap img{transform:scale(1.02)}
@@ -99,7 +101,7 @@
         .contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent);transform:scale(1.01)}
         .contact-form textarea{min-height:120px;resize:vertical}
         .contact-submit{padding:18px 36px;background:var(--accent);color:#000;border:none;border-radius:100px;font-size:15px;font-weight:600;cursor:pointer}
-        .contact-submit:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,0.35)}
+        .contact-submit:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,0.4)}
         footer{padding:48px 24px;background:var(--bg-primary);border-top:1px solid var(--border)}
         .footer-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
         .footer-logo{font-size:18px;font-weight:600}
