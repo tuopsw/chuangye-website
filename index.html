@@ -276,11 +276,14 @@
     <section class="contact" id="contact">
         <h2>开启您的项目</h2>
         <p>告诉我们您的需求，让我们一起创造非凡</p>
-        <form class="contact-form">
-            <input type="text" placeholder="您的姓名" required>
-            <input type="email" placeholder="企业邮箱" required>
-            <input type="text" placeholder="公司名称">
-            <textarea placeholder="项目需求描述" rows="4"></textarea>
+        <form class="contact-form" action="https://formsubmit.co/915009069@qq.com" method="POST">
+            <input type="hidden" name="_subject" value="【创野风暴】新咨询通知">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://tuopsw.github.io/chuangye-website/thanks.html">
+            <input type="text" name="姓名" placeholder="您的姓名" required>
+            <input type="email" name="邮箱" placeholder="企业邮箱" required>
+            <input type="text" name="公司" placeholder="公司名称">
+            <textarea name="需求描述" placeholder="项目需求描述" rows="4"></textarea>
             <button type="submit" class="contact-submit">提交咨询</button>
         </form>
     </section>
