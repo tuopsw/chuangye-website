@@ -3,117 +3,1174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>创野风暴 | 企业级定制开发 · AI Agent</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <meta name="description" content="创野风暴 - 中小企业AI AGENT智能体接入服务官网，零代码接入、低成本部署、全场景适配">
+    <title>创野风暴 | 中小企业AI AGENT智能体接入服务</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root{--bg:#fff;--surface:#f5f5f7;--text:#1d1d1f;--text-secondary:#86868b;--accent:#2997ff;--ease:cubic-bezier(0.16,1,0.3,1)}
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{font-family:"Inter","Noto Sans SC",-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-        a{text-decoration:none;color:inherit}
-        img{max-width:100%;display:block}
-        nav{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:center;padding:0 48px;z-index:9999;background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.05)}
-        .nav-inner{max-width:980px;width:100%;display:flex;justify-content:space-between;align-items:center}
-        .nav-logo{font-size:18px;font-weight:600;letter-spacing:-0.02em}
-        .nav-links{display:flex;gap:32px}
-        .nav-links a{font-size:12px;font-weight:500;color:var(--text-secondary);transition:color 0.3s}
-        .nav-links a:hover{color:var(--text)}
-        .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px;position:relative;overflow:hidden}
-        .hero::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(41,151,255,0.15) 0%,rgba(94,92,230,0.15) 50%,rgba(41,151,255,0.15) 100%);background-size:400% 400%;animation:gradientMove 15s ease infinite}.hero::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(41,151,255,0.25) 0%,transparent 60%);pointer-events:none;animation:pulse 8s ease-in-out infinite}
-        @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}@keyframes pulse{0%,100%{opacity:0.5;transform:translateX(-50%) scale(1)}50%{opacity:0.8;transform:translateX(-50%) scale(1.1)}}
-        .hero-content{position:relative;z-index:1;opacity:0;animation:fadeInUp 1.2s var(--ease) 0.3s forwards}
-        .hero h1{font-size:clamp(56px,10vw,96px);font-weight:700;letter-spacing:-0.04em;line-height:1.05;margin-bottom:16px}
-        .hero h1 .chuang{color:#86868b}
-        .hero h1 .feng{background:linear-gradient(90deg,#2997ff,#5e5ce6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .hero-subtitle{font-size:clamp(21px,3vw,28px);font-weight:400;color:var(--text-secondary);max-width:600px;margin-bottom:32px}
-        .hero-cta{display:inline-flex;gap:16px;margin-top:8px}
-        .hero-cta a{padding:14px 28px;border-radius:980px;font-size:17px;font-weight:500;transition:all 0.4s var(--ease)}
-        .hero-cta-primary{background:var(--accent);color:#fff}
-        .hero-cta-primary:hover{background:#0071e3;transform:scale(1.03);box-shadow:0 10px 30px rgba(41,151,255,0.3)}
-        .hero-cta-secondary{background:transparent;border:1px solid rgba(0,0,0,0.15);color:var(--text)}
-        .hero-cta-secondary:hover{background:rgba(0,0,0,0.05);transform:scale(1.03)}
-        .section{padding:140px 20px;max-width:1080px;margin:0 auto;opacity:0;transform:translateY(50px);transition:all 1s var(--ease)}
-        .section.visible{opacity:1;transform:translateY(0)}
-        .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-        .card{background:#fff;border-radius:24px;padding:48px;box-shadow:0 4px 24px rgba(0,0,0,0.06);transition:all 0.5s var(--ease);border:1px solid rgba(0,0,0,0.06)}
-        .card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,0,0,0.12)}
-        .card-label{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
-        .card h3{font-size:32px;font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
-        .card p{font-size:17px;color:var(--text-secondary)}
-        .image-wrap{aspect-ratio:16/10;border-radius:24px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
-        .image-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease)}
-        .image-wrap:hover img{transform:scale(1.06)}
-        .ai-section{background:var(--surface);padding:140px 20px}
-        .ai-content{max-width:1080px;margin:0 auto}
-        .ai-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
-        .ai-visual{opacity:0;transform:translateX(-60px);transition:all 1s var(--ease)}
-        .ai-visual.visible{opacity:1;transform:translateX(0)}
-        .ai-text{opacity:0;transform:translateX(60px);transition:all 1s var(--ease);transition-delay:0.2s}
-        .ai-text.visible{opacity:1;transform:translateX(0)}
-        .ai-text h2{font-size:clamp(32px,4vw,48px);font-weight:600;letter-spacing:-0.02em;margin-bottom:20px}
-        .ai-text p{font-size:17px;color:var(--text-secondary);margin-bottom:32px}
-        .feature-item{display:flex;gap:14px;padding:18px;background:rgba(255,255,255,0.8);border-radius:14px;margin-bottom:12px;transition:all 0.4s var(--ease);border:1px solid rgba(0,0,0,0.05)}
-        .feature-item:hover{background:#fff;transform:translateX(10px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
-        .feature-icon{width:40px;height:40px;background:linear-gradient(135deg,#2997ff,#5e5ce6);border-radius:10px;display:flex;align-items:center;justify-content:center}
-        .feature-icon svg{width:20px;height:20px;stroke:#fff;stroke-width:1.5}
-        .feature-item h4{font-size:15px;font-weight:600;margin-bottom:3px}
-        .feature-item p{font-size:13px;color:var(--text-secondary)}
-        .cases{padding:140px 20px;max-width:1080px;margin:0 auto}
-        .cases-header{text-align:center;margin-bottom:60px;opacity:0;transform:translateY(40px);transition:all 1s var(--ease)}
-        .cases-header.visible{opacity:1;transform:translateY(0)}
-        .cases h2{font-size:clamp(36px,5vw,52px);font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
-        .cases-header p{font-size:19px;color:var(--text-secondary)}
-        .case-card{background:#fff;border-radius:24px;overflow:hidden;transition:all 0.5s var(--ease);opacity:0;transform:translateY(40px);border:1px solid rgba(0,0,0,0.06);box-shadow:0 4px 24px rgba(0,0,0,0.04)}
-        .case-card.visible{opacity:1;transform:translateY(0)}
-        .case-card:hover{transform:translateY(-14px);box-shadow:0 24px 60px rgba(0,0,0,0.12)}
-        .case-img{aspect-ratio:16/9;overflow:hidden}
-        .case-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease)}
-        .case-card:hover .case-img img{transform:scale(1.08)}
-        .case-info{padding:32px}
-        .case-tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-        .case-info h3{font-size:22px;font-weight:600;margin-bottom:8px}
-        .case-info p{font-size:15px;color:var(--text-secondary)}
-        .case-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:10px 20px;background:var(--accent);color:#fff;border-radius:100px;font-size:14px;font-weight:500;transition:all 0.3s var(--ease)}
-        .case-link:hover{background:#0071e3;transform:scale(1.05);box-shadow:0 8px 20px rgba(41,151,255,0.3)}
-        .about{background:var(--surface);padding:140px 20px;text-align:center}
-        .about-content{max-width:700px;margin:0 auto;opacity:0;transform:translateY(40px);transition:all 1s var(--ease)}
-        .about-content.visible{opacity:1;transform:translateY(0)}
-        .about h2{font-size:clamp(36px,5vw,52px);font-weight:600;letter-spacing:-0.02em;margin-bottom:24px}
-        .about p{font-size:19px;color:var(--text-secondary);margin-bottom:56px}
-        .stats{display:flex;justify-content:center;gap:80px;padding-top:48px;border-top:1px solid rgba(0,0,0,0.08)}
-        .stat-number{font-size:52px;font-weight:600;color:var(--accent)}
-        .stat-label{font-size:14px;color:var(--text-secondary)}
-        .contact{padding:140px 20px;text-align:center}
-        .contact h2{font-size:clamp(36px,5vw,52px);font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
-        .contact>p{font-size:19px;color:var(--text-secondary);margin-bottom:48px}
-        .contact-form{max-width:420px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-        .contact-form input,.contact-form textarea{width:100%;padding:18px 22px;background:#fff;border:1px solid rgba(0,0,0,0.12);border-radius:14px;color:var(--text);font-size:16px;font-family:inherit;outline:none;transition:all 0.3s}
-        .contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(41,151,255,0.1)}
-        .contact-form textarea{min-height:120px;resize:vertical}
-        .contact-form button{padding:18px 32px;background:var(--accent);color:#fff;border:none;border-radius:980px;font-size:16px;font-weight:500;cursor:pointer;transition:all 0.4s var(--ease)}
-        .contact-form button:hover{background:#0071e3;transform:scale(1.02);box-shadow:0 10px 30px rgba(41,151,255,0.3)}
-        footer{padding:48px 20px;background:var(--surface);border-top:1px solid rgba(0,0,0,0.06)}
-        .footer-content{max-width:980px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-        .footer-logo{font-size:14px;font-weight:500}
-        .footer-links{display:flex;gap:28px}
-        .footer-links a{font-size:13px;color:var(--text-secondary);transition:color 0.3s}
-        @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-        @media(max-width:768px){.nav-links{display:none}.grid-2,.ai-grid{grid-template-columns:1fr}.hero-cta{flex-direction:column}.card{padding:36px}.stats{flex-direction:column;gap:40px}.footer-content{flex-direction:column;gap:20px;text-align:center}}
+        :root {
+            --primary: #0066CC;
+            --primary-dark: #004999;
+            --white: #FFFFFF;
+            --gray-lightest: #F5F5F7;
+            --gray-light: #86868B;
+            --gray: #6E6E73;
+            --gray-dark: #1D1D1F;
+            --black: #000000;
+            --font-stack: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --max-width: 1200px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            color: var(--gray-dark);
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--gray-dark);
+                color: var(--white);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--gray-dark);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 980px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--gray-dark);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
+            padding: 80px 24px 40px;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gray-dark);
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-lightest);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(180deg, var(--gray-lightest) 0%, var(--white) 100%);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            color: var(--gray-dark);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 400;
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 16px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-highlights {
+            font-size: 16px;
+            color: var(--gray-light);
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .hero-highlights span {
+            margin: 0 12px;
+            color: var(--gray-light);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 16px 32px;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            border: 2px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .hero-visual {
+            margin-top: 60px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-visual-placeholder {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            box-shadow: 0 40px 80px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 700;
+            color: var(--gray-dark);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            color: var(--gray-dark);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .about-text p {
+            font-size: 17px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-light);
+        }
+
+        .about-visual {
+            background: linear-gradient(135deg, var(--gray-lightest) 0%, #e8e8ed 100%);
+            border-radius: 24px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-light);
+            font-size: 18px;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--gray-lightest);
+        }
+
+        .services-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px 28px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gray-lightest);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 28px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.05);
+            background: var(--primary);
+        }
+
+        .service-card:hover .service-icon::after {
+            content: '🚀';
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Cases Section */
+        .cases {
+            background: var(--white);
+        }
+
+        .cases-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .case-card {
+            background: var(--gray-lightest);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .case-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .case-content {
+            padding: 28px;
+        }
+
+        .case-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .case-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 16px;
+        }
+
+        .case-item {
+            margin-bottom: 12px;
+        }
+
+        .case-item-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .case-item-text {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--gray-lightest);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 24px 28px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--gray-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-arrow {
+            width: 24px;
+            height: 24px;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-answer-inner {
+            padding: 0 28px 24px;
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--gray-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 120px 24px;
+        }
+
+        .cta h2 {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-sub {
+            font-size: 18px;
+            color: var(--gray-light);
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px 48px;
+            border-radius: 980px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 102, 204, 0.4);
+        }
+
+        .cta-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-dark);
+            color: var(--gray-light);
+            padding: 60px 24px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 14px;
+            color: var(--gray-light);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: var(--gray-light);
+            text-decoration: none;
+            margin-left: 24px;
+            transition: var(--transition);
+        }
+
+        .footer-bottom a:hover {
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .section {
+                padding: 80px 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .hero-highlights span {
+                display: block;
+                margin: 8px 0;
+            }
+        }
+
+        /* Service Icons SVG */
+        .icon-zap {
+            background: linear-gradient(135deg, #ffd93d 0%, #ff6b6b 100%);
+        }
+        
+        .icon-settings {
+            background: linear-gradient(135deg, #6bcb77 0%, #4d96ff 100%);
+        }
+        
+        .icon-link {
+            background: linear-gradient(135deg, #4d96ff 0%, #6b5b95 100%);
+        }
+        
+        .icon-shield {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
+        }
     </style>
 </head>
 <body>
-    <nav><div class="nav-inner"><div class="nav-logo">创野风暴</div><div class="nav-links"><a href="#services">服务</a><a href="#ai">AI能力</a><a href="#cases">案例</a><a href="about.html">关于</a><a href="#contact">联系</a></div></div></nav>
-    <section class="hero"><div class="hero-content"><h1><span class="chuang">创野</span><span class="feng">风暴</span></h1><p class="hero-subtitle">企业级定制开发与 AI Agent 研发<br>为 B 端企业提供全链路数字化转型服务</p><div class="hero-cta"><a href="#contact" class="hero-cta-primary">开启合作</a><a href="#services" class="hero-cta-secondary">了解更多</a></div></div></section>
-    <section class="section" id="services"><div class="grid-2"><div class="card"><p class="card-label">核心业务</p><h3>企业级定制开发</h3><p>基于业务场景的深度定制，打造高性能、可扩展的企业软件系统</p></div><div class="card"><p class="card-label">AI 能力</p><h3>智能 Agent 研发</h3><p>基于大语言模型的智能体开发，实现业务流程的智能化升级</p></div></div></section>
-    <section class="ai-section" id="ai"><div class="ai-content"><div class="ai-grid"><div class="ai-visual"><div class="image-wrap"><img src="images/ai-hero.jpg" alt="AI"></div></div><div class="ai-text"><h2>AI Agent<br>重新定义企业效率</h2><p>基于先进的大语言模型与机器学习技术，为企业打造真正懂业务、会思考、能执行的智能助手。</p><div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><h4>自然语言交互</h4><p>支持多轮对话</p></div></div><div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg></div><div><h4>工具调用</h4><p>执行复杂流程</p></div></div><div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><h4>持续进化</h4><p>越用越聪明</p></div></div></div></div></div></div></section>
-    <section class="cases" id="cases"><div class="cases-header"><h2>成功案例</h2><p>已为 50+ 企业提供数字化转型服务</p></div><div class="grid-2"><div class="case-card"><div class="case-img"><img src="https://picsum.photos/seed/c1/600/340" alt="Case 1"></div><div class="case-info"><p class="case-tag">金融科技</p><h3>某银行智能客服系统</h3><p>基于RAG技术构建企业知识库</p><a href="case-bank.html" class="case-link">详情</a></div></div><div class="case-card
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="logo">创野风暴</a>
+            <ul class="nav-links">
+                <li><a href="#hero">首页</a></li>
+                <li><a href="#services">核心服务</a></li>
+                <li><a href="#cases">客户案例</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#faq">常见问题</a></li>
+            </ul>
+            <a href="mailto:?subject=创野风暴AI%20AGENT接入咨询&body=您好，我想咨询创野风暴的AI%20AGENT接入服务，我的企业名称是：%0A所属行业是：%0A核心需求是：%0A期待与您沟通。" class="nav-cta">立即咨询</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-    <section class="about" id="about"><div class="about-content"><h2>用技术创造无限可能</h2><p>创野风暴是一家专注于企业级定制开发和 AI Agent 研发的技术公司。我们相信，优秀的技术应当服务于业务价值创造，而非成为企业的负担。</p><div class="stats"><div><p class="stat-number">100+</p><p class="stat-label">成功交付项目</p></div><div><p class="stat-number">50+</p><p class="stat-label">企业客户</p></div><div><p class="stat-number">5年</p><p class="stat-label">行业深耕</p></div></div></div></section>
-    <section class="contact" id="contact"><h2>开启合作</h2><p>准备好升级您的企业数字化能力了吗？</p><form class="contact-form"><input type="text" placeholder="您的姓名"><input type="email" placeholder="邮箱地址"><textarea placeholder="请描述您的需求"></textarea><button type="submit">提交</button></form></section>
-    <footer><div class="footer-content"><div class="footer-logo">创野风暴</div><div class="footer-links"><a href="#">隐私政策</a></div></div></footer>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#hero" onclick="closeMobileMenu()">首页</a>
+        <a href="#services" onclick="closeMobileMenu()">核心服务</a>
+        <a href="#cases" onclick="closeMobileMenu()">客户案例</a>
+        <a href="#about" onclick="closeMobileMenu()">关于我们</a>
+        <a href="#faq" onclick="closeMobileMenu()">常见问题</a>
+        <a href="mailto:?subject=创野风暴AI%20AGENT接入咨询&body=您好，我想咨询创野风暴的AI%20AGENT接入服务，我的企业名称是：%0A所属行业是：%0A核心需求是：%0A期待与您沟通。" onclick="closeMobileMenu()">立即咨询</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>让中小企业，<br>轻松拥有专属AI AGENT智能体</h1>
+            <p class="hero-sub">零代码接入 | 低成本部署 | 全场景适配 | 全周期运维</p>
+            <p class="hero-highlights">创野风暴助力企业降本增效，抢占AI时代先机</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">了解解决方案</a>
+                <a href="#cases" class="btn-secondary">查看客户案例</a>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-visual-placeholder">
+                    AI AGENT 智能体交互示意
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="about-grid">
+            <div class="about-text animate-on-scroll">
+                <h2>关于创野风暴</h2>
+                <p>创野风暴，是专注于中小企业AI落地的技术服务商，核心团队来自顶尖科技企业与AI实验室，拥有10+年企业服务与大模型研发经验。</p>
+                <p>我们以「创新破界，落地为核」为理念，坚信AI不应该是大型企业的专属特权。我们致力于将复杂的AI AGENT智能体技术，转化为中小企业触手可及的标准化、轻量化解决方案——无需专业技术团队，无需高额研发投入，就能让每一家中小企业都能通过AI实现业务增长与效率升级，掀起属于自己的数字化风暴。</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">企业客户</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">行业覆盖</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">成本降低</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual animate-on-scroll">
+                团队与愿景可视化区域
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="section-header animate-on-scroll">
+            <h2 class="section-title">一站式AI AGENT全流程服务</h2>
+            <p class="section-sub">从接入到落地，全流程托管，创野风暴让中小企业零负担拥抱AI</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon icon-zap">⚡</div>
+                <h3>零代码快速接入</h3>
+                <p>开箱即用标准化AGENT产品，无需编写一行代码，无需专业技术团队，最快3天即可完成部署上线，无缝适配企业现有业务流程</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon icon-settings">⚙️</div>
+                <h3>全场景定制开发</h3>
+                <p>针对企业客服、销售转化、内部管理、生产运维、内容创作等细分场景，量身定制专属AI AGENT，精准匹配企业个性化需求</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon icon-link">🔗</div>
+                <h3>多系统无缝集成</h3>
+                <p>支持对接企业微信、钉钉、官网、公众号、CRM、ERP、OA等主流企业管理系统，无需更换现有工具，实现数据与能力全面打通</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon icon-shield">🛡️</div>
+                <h3>全周期运维升级</h3>
+                <p>提供7×24小时技术支持，全流程托管运维，持续跟进AGENT使用效果，同步完成模型优化、功能迭代、安全升级，保障长期稳定运行</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section class="section cases" id="cases">
+        <div class="section-header animate-on-scroll">
+            <h2 class="section-title">500+中小企业的共同选择</h2>
+            <p class="section-sub">创野风暴真实落地案例，看得见的效率提升与成本优化</p>
+        </div>
+        <div class="cases-grid">
+            <div class="case-card animate-on-scroll">
+                <div class="case-image">🏪</div>
+                <div class="case-content">
+                    <span class="case-tag">零售行业</span>
+                    <h3>XX连锁零售企业</h3>
+                    <div class="case-item">
+                        <div class="case-item-label">核心痛点</div>
+                        <div class="case-item-text">线下门店多，客服咨询量大，人工响应不及时，售后成本高</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">解决方案</div>
+                        <div class="case-item-text">定制智能客服AGENT，对接公众号、企业微信，实现7×24小时自动接待</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">落地成果</div>
+                        <div class="case-item-text">客服响应效率提升85%，人工成本降低45%，客户满意度提升30%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="case-card animate-on-scroll">
+                <div class="case-image">🏭</div>
+                <div class="case-content">
+                    <span class="case-tag">生产制造</span>
+                    <h3>XX机械设备制造企业</h3>
+                    <div class="case-item">
+                        <div class="case-item-label">核心痛点</div>
+                        <div class="case-item-text">设备故障排查依赖资深工程师，新人上手慢，停机维修时间长</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">解决方案</div>
+                        <div class="case-item-text">定制生产运维AGENT，接入设备管理系统，实现故障自动诊断</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">落地成果</div>
+                        <div class="case-item-text">故障排查效率提升75%，设备停机时间缩短50%，培训成本降低60%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="case-card animate-on-scroll">
+                <div class="case-image">💼</div>
+                <div class="case-content">
+                    <span class="case-tag">企服行业</span>
+                    <h3>XX企业咨询公司</h3>
+                    <div class="case-item">
+                        <div class="case-item-label">核心痛点</div>
+                        <div class="case-item-text">获客线索多，人工跟进效率低，客户需求梳理不精准，成单转化率低</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">解决方案</div>
+                        <div class="case-item-text">定制销售转化AGENT，对接CRM系统，实现线索自动分层</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">落地成果</div>
+                        <div class="case-item-text">线索跟进效率提升80%，成单转化率提升35%，销售人效提升50%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="case-card animate-on-scroll">
+                <div class="case-image">🛒</div>
+                <div class="case-content">
+                    <span class="case-tag">电商行业</span>
+                    <h3>XX电商直播机构</h3>
+                    <div class="case-item">
+                        <div class="case-item-label">核心痛点</div>
+                        <div class="case-item-text">直播脚本、短视频内容创作量大，人工成本高，选品数据分析耗时久</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">解决方案</div>
+                        <div class="case-item-text">定制内容创作AGENT，实现直播脚本自动生成、选品数据智能分析</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">落地成果</div>
+                        <div class="case-item-text">内容创作效率提升90%，内容团队成本降低50%，选品效率提升65%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="section-header animate-on-scroll">
+            <h2 class="section-title">常见问题</h2>
+            <p class="section-sub">你关心的问题，创野风暴都有答案</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question">
+                    <span>我们公司没有专业的技术团队，能顺利接入创野风暴的AI AGENT吗？</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        完全可以。我们提供全流程托管服务，从需求梳理、AGENT定制到部署上线、使用培训，全程由我们的技术团队完成，零代码接入，无需您配备专业技术人员，最快3天即可完成全流程落地。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question">
+                    <span>中小企业接入创野风暴的AI AGENT成本高吗？会不会超出预算？</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        我们专为中小企业打造了阶梯式定价方案，支持按需付费、按模块选择，最低千元级即可完成接入，远低于自建AI团队、自主研发的成本，同时提供免费的前期需求咨询与方案设计，完全适配中小企业的预算范围。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question">
+                    <span>创野风暴的AI AGENT可以和我们公司现在用的企业微信、钉钉、CRM系统对接吗？</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        完全支持。我们的AI AGENT具备极强的兼容性，可无缝对接企业微信、钉钉、公众号、官网、主流CRM、ERP、OA等绝大多数企业常用系统，无需更换您现有的办公工具，即可实现数据互通与能力融合。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question">
+                    <span>AGENT上线之后，后续的维护、升级、问题排查创野风暴会负责吗？</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        我们提供全生命周期的运维服务，7×24小时技术支持团队随时响应，同时会根据大模型技术迭代、您的业务需求变化，持续为AGENT进行功能优化、模型升级、安全加固，保障AGENT长期稳定运行，持续为企业创造价值。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question">
+                    <span>从咨询到AGENT正式上线，创野风暴的整个服务周期需要多久？</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        标准化AGENT产品最快3天即可完成部署上线；定制化AGENT根据需求复杂度，通常1-2周即可完成全流程开发、测试与上线，远低于行业平均周期，帮助企业快速落地，快速见效。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>准备好和创野风暴一起，开启你的企业AI升级之旅了吗？</h2>
+        <p class="cta-sub">留下你的需求，我们的AI解决方案专家将在1个工作日内与你取得联系</p>
+        <a href="mailto:?subject=创野风暴AI%20AGENT接入咨询&body=您好，我想咨询创野风暴的AI%20AGENT接入服务，我的企业名称是：%0A所属行业是：%0A核心需求是：%0A期待与您沟通。" class="cta-btn">发送邮件咨询</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>创野风暴</h3>
+                    <p>中小企业AI AGENT落地服务商，以创新破局，为中小企业掀起AI效率风暴</p>
+                </div>
+                <div class="footer-col">
+                    <h4>导航</h4>
+                    <a href="#services">核心服务</a>
+                    <a href="#cases">客户案例</a>
+                    <a href="#about">关于我们</a>
+                    <a href="#faq">常见问题</a>
+                </div>
+                <div class="footer-col">
+                    <h4>服务</h4>
+                    <a href="#services">零代码接入</a>
+                    <a href="#services">定制开发</a>
+                    <a href="#services">系统集成</a>
+                    <a href="#services">运维升级</a>
+                </div>
+                <div class="footer-col">
+                    <h4>联系</h4>
+                    <a href="mailto:?subject=创野风暴AI%20AGENT接入咨询">发送邮件</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>Copyright © 2026 创野风暴 版权所有</span>
+                <div>
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        const observer = new IntersectionObserver((entries) => {entries.forEach(e => {if(e.isIntersecting)e.target.classList.add("visible")})},{threshold:0.1});
-        document.querySelectorAll(".section,.ai-visual,.ai-text,.cases-header,.case-card,.about-content").forEach(el=>observer.observe(el));
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
